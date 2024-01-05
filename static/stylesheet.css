@@ -1,0 +1,11 @@
+h1 {
+    color: red;
+}
+
+.container-posting-expenses {
+    display: flex;
+    flex-direction: row;
+    padding: 2em;
+    border: 1px solid black;
+    
+}

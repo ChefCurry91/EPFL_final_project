@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/stylesheet.css">
+    <title>Posting Expenses</title>
+</head>
+<body>
+    <div>
+        <h1>Easiest Way to Keep Track of Your Expenses</h1>
+
+        
+        <form  class="container-posting-expenses" action = '/posting-expenses' method="post"> 
+            
+            <input
+                type="text"
+                placeholder="Enter Expense"
+                name="expense"
+                id="expense-to-post"
+                >
+
+
+            
+            <select id = "list-currency" name="currency-payment">  
+                <option> ---Choose Currency Payment--- </option>  
+                <option value="CHF"> CHF </option>
+                <option value="EUR"> Euro € </option>
+                <option value="USD"> USD $ </option>
+
+
+            <input 
+                type="number"
+                placeholder="Enter Amount"
+                name="amount"
+                id="amount-to-post"
+                >
+            
+
+            <input 
+                type="date"
+                placeholder="Enter Date of Payment"
+                name="date"
+                id="'date-to-post"
+                >
+
+            <button type="submit">Post</button>
+
+            </form>
+    </div>
+
+    
+</body>
+</html>
