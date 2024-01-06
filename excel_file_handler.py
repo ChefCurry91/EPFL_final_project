@@ -3,24 +3,22 @@ from openpyxl import Workbook,load_workbook
 from openpyxl.styles import Font 
 import os, datetime
 import requests
+from data_title_column_excel import dict_data_title_column
 
 
-class File():
+class FileHandler():
+
+    #Initialize the path where the Excel file will be stored
+    def __init__(self, path,file_name):
+        self.path = path
+        self.file_name = file_name
+        
 
     # For excel sheet manipulation, I relied on the following source:
     # Automate the Boring Stuff with Python: Practical Programming for Total Beginners by AI Sweighart
     # https://automatetheboringstuff.com/2e/chapter13/
 
     def create_excel_sheet(self):
-
-        # Joining Paths with os.path.join
-        # https://ioflood.com/blog/python-os-path/#:~:text=In%20this%20example%2C%20we're,to%20a%20user's%20documents%20directory.
-        
-        # retrieving the user home directory
-        # https://www.tutorialspoint.com/How-to-find-the-real-user-home-directory-using-Python
-
-        desktop_path = os.path.join(os.path.expanduser('~'), 'Desktop')
-
 
         wb = Workbook()
 
@@ -31,27 +29,25 @@ class File():
         # import the Font() function from the openpyxl.styles module.
         
         # Create a font.
-        bold16Font = Font(size=16, bold=True, italic=True) 
+        bold_font_italic_16 = Font(size=16, bold=True, italic=True) 
 
-        letters_column_excel = 'ABCDEF'
-
-        # Assign same font to A1:F1 cells
+        # Iterating through dictionnary
+        # https://realpython.com/iterate-through-dictionary-python/
         
-        for letter in letters_column_excel:
-            sheet[letter +'1'].font=bold16Font
-            # Assign same dimension to each column in row 1
+
+        # By iterating through the dictionary, we define the titles for each column 
+        # and make adjustments to the font and size for each respective column.
+        for letter,title in dict_data_title_column.items():
+            sheet[letter+'1'] = title
+            sheet[letter +'1'].font=bold_font_italic_16
             sheet.column_dimensions[letter].width =  35
-        
             
-        sheet['A1'] = 'Expense'
-        sheet['B1'] = 'Date of Payment'
-        sheet['C1'] = 'Currency Payment'
-        sheet['D1'] = 'Original Amount'
-        sheet['E1'] = 'Amount in CHF'
-        sheet['F1'] = 'Total Amount in CHF'
 
         file_name = 'expenses.xlsx'
-        file_path = os.path.join(desktop_path, file_name)
+
+        # Joining Paths with os.path.join
+        # https://ioflood.com/blog/python-os-path/#:~:text=In%20this%20example%2C%20we're,to%20a%20user's%20documents%20directory.
+        file_path = os.path.join(self.path, file_name)
 
         # save operation applied to excell workbook
         wb.save(file_path)
@@ -85,22 +81,25 @@ class File():
                 # https://www.programiz.com/python-programming/nested-dictionary
                 converted_amount = data['rates']['CHF']
                 print(f"{amount} {currency_payment} = {converted_amount} CHF at {date_exchange_rate}")
+                
+                # amount_converted is rounded to 2 decimal
+                round(float(converted_amount), 2)
                 return converted_amount
         else:
             return amount
     
 
-    def add_data_to_excel(self,data_expense):
+    def add_data_to_excel_sheet(self,data_expense):
+
+
+        bold_font_13 = Font(size=13, bold=True) 
         
         # Joining Paths with os.path.join
         # https://ioflood.com/blog/python-os-path/#:~:text=In%20this%20example%2C%20we're,to%20a%20user's%20documents%20directory.
         
-        # retrieving the user home directory
-        # https://www.tutorialspoint.com/How-to-find-the-real-user-home-directory-using-Python
         
-        desktop_path = os.path.join(os.path.expanduser('~'), 'Desktop')
         file_name = 'expenses.xlsx'
-        file_path = os.path.join(desktop_path, file_name)
+        file_path = os.path.join(self.path, file_name)
 
         # For excel sheet manipulation, I relied on the following source:
         # Automate the Boring Stuff with Python: Practical Programming for Total Beginners by AI Sweighart
@@ -119,12 +118,12 @@ class File():
         # Flag first row 
         skip_first_row = True 
 
-        error_message = 'Please Fill All Fields In'
         
         try:
             # Iterating through the dictionary 'data_expense',
             # which is initially populated upon clicking the "post" button
             # within the @app.route('/posting-expenses') endpoint
+
             # https://realpython.com/iterate-through-dictionary-python/
 
             for key,value in data_expense.items():
@@ -137,10 +136,6 @@ class File():
                 # "column_index" = 1 corresponds to the first column,
                 # "column_index" = 2 corresponds to the second column on the spreadsheet.
                 
-                # When traversing dictionnary, we assign for next available row in this case row "2" 
-                # and for each column from A to F (because they are 6 key-value pairs) the value stored 
-                # in variable "value" to the corresponding cell. 
-                # First key-value pair => cell A2, second key-value pair => B2
 
                 # While traversing the dictionary, we assign values to the next available row,
                 # in this case, row 2. For each column from A to F (due to 6 key-value pairs),
@@ -148,6 +143,8 @@ class File():
                 # For example, the first key-value pair corresponds to cell A2, the second to B2, and so forth.
 
                 sheet.cell(row=target_row, column=column_index).value = value
+                sheet.cell(row=target_row, column=column_index).font=bold_font_13
+                
                 # While the row remains unchanged, the column_index increments,
                 # enabling movement to the next column while remaining on the same row
                 column_index+=1
@@ -169,30 +166,67 @@ class File():
 
                     # Loop through every row in column "E"
                     # https://copyprogramming.com/howto/openpyxl-loop-through-rows-and-columns
+
                     for cell in sheet.iter_rows(min_col=column_E, max_col=column_E):
                         for row in cell:
                             
-                             #Setting the variable "skip_first_row" to "True" ensures that during the initial iteration,
+                            #Setting the variable "skip_first_row" to "True" ensures that during the initial iteration,
                             # we skip writing data to the first row of column "E", which contains the column title.
 
                             if skip_first_row:
                                 skip_first_row=False
 
 
-                           # While iterating through column "E" (representing different rows), 
+                            # While iterating through column "E" (representing different rows), 
                             # we retrieve the value assigned to each cell. 
                             # The retrieved value is then added to the cumulative total obtained from previous calculations  
                             else:
-                                total_amount+=float(row.value)
+                                total_amount+=round(float(row.value), 2)
                                 
                                 # Subsequently, we assign the total amount to the cell in the next available row of column F.
 
                                 sheet.cell(row=target_row, column=column_index).value = total_amount
+                                sheet.cell(row=target_row, column=column_index).font= bold_font_13
 
                     
-            print(total_amount)
             wb.save(file_path)
             return total_amount
         
         except:
             return 
+        
+    #def add_data_in_txt_file(self,expense,date,currency_payment,amount,converted_amount):
+    def add_data_to_txt_file(self,data_expense,file_name):
+        my_file = open(self.file_name, 'a')
+
+        # To check if a file is empty using os.path.getsize, we need to provide the file name
+        #https://www.geeksforgeeks.org/python-os-path-basename-method/
+        
+        my_file_name = os.path.basename(file_name)
+       
+
+        # Check if a text file is not empty, 
+        # ensuring that no line break is added if the file contains no content
+        # https://pythonhow.com/how/check-if-a-text-file-is-empty/#:~:text=getsize('nodata.,would%20output%20File%20is%20empty.
+        
+        if os.path.getsize(my_file_name) != 0:
+            print('Empty')
+            break_line ='\n'
+            my_file.write(break_line)
+
+            for key, value in data_expense.items():
+                value_stringified= str(value) + ' '
+                content_file = value_stringified
+                my_file.write(content_file)
+            my_file.close()
+        
+        else:
+            for key, value in data_expense.items():
+                value_stringified= str(value) + ' '
+                content_file = value_stringified    
+                my_file.write(content_file)
+            my_file.close()
+
+
+
+          
