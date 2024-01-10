@@ -228,5 +228,14 @@ class FileHandler():
             my_file.close()
 
 
-
-          
+    def get_data_added_to_txt_file(self):
+        my_file= open(self.file_name)
+        content = my_file.read()
+        my_file.close()
+        array_expenses = content.split('\n')
+        two_dimensional_array_expenses = []
+        for i in array_expenses:
+            x = i.split()
+            two_dimensional_array_expenses.append(x)
+        print(two_dimensional_array_expenses)
+        return two_dimensional_array_expenses

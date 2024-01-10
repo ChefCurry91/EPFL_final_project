@@ -99,6 +99,40 @@ def post_expenses():
 @app.route('/tracking-expenses')
 def track_expenses():
     page= get_html('tracking-expenses')
+    array_expenses = my_file_handler.get_data_added_to_txt_file()
+    print(array_expenses)
+
+
+    actual_values = ''
+ 
+        
+   # for row in array_expenses:
+    #    for element in row:
+     #       actual_values += '<div class='hello'>' + row + '</div>'
+
+    for row in array_expenses:
+        # Constructing HTML div elements from the data in array_expenses
+        actual_values += '<div class="hello">'
+        for element in row:
+            actual_values += f'<span class="h">{element}</span>'
+        actual_values += '</div>'
+    
+    return page.replace('<p>Track expenses</p>',actual_values)
+
+
+
+   # if array_expenses:
+    #    for piece_of_data in array_expenses:
+    #        array_per_payment= piece_of_data.split()
+    
+
+    
+   # else:
+    #    return page
+
+    
+
+
     return page
 
 

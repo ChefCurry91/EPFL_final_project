@@ -7,45 +7,81 @@
     <title>Posting Expenses</title>
 </head>
 <body>
-    <div>
-        <h1>Easiest Way to Keep Track of Your Expenses</h1>
+    <div class="general-container">
+
+        <nav>
+            <ul class="ul-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/posting-expenses">Posting Expenses</a></li>
+                <li><a href ="/tracking-expenses">Track Expenses</a></li>
+            </ul>
+        </nav>
+
+        <h1 id="BudgetBuddy-index-page">BudgetBuddy</br><span id="slogan-index-page">Your Trusted Partner in Financial Management!</span></h1>
 
         
-        <form  class="container-posting-expenses" action = '/posting-expenses' method="post"> 
+        <form  id="form-for-posting-expenses" action = '/posting-expenses' method="post"> 
             
-            <input
-                type="text"
-                placeholder="Enter Expense"
-                name="expense"
-                id="expense-to-post"
-                >
+            <h3 id="title-form-posting-expenses">Post Your Expenses</h3>
+            
+            
+            <div id="div-input-expenses">
+                <label>Expenses Details</label>
+                <input
+                    id="input-expenses"
+                    type="text"
+                    placeholder="Enter Name Expenses"
+                    name="expense"
+                    id="expense-to-post"
+                    >
+                
+            </div>
 
+            <div id="div-currency-to-post">
+
+                <label>Details Currency</label>
+                <select id = "list-currency" name="currency-payment">  
+                    <option> ---Choose Currency Payment--- </option>  
+                    <option value="CHF"> CHF </option>
+                    <option value="EUR"> Euro € </option>
+                    <option value="USD"> USD $ </option>
+                </select>
+
+        </div>
 
             
-            <select id = "list-currency" name="currency-payment">  
-                <option> ---Choose Currency Payment--- </option>  
-                <option value="CHF"> CHF </option>
-                <option value="EUR"> Euro € </option>
-                <option value="USD"> USD $ </option>
+        <div id="div-amount-to-post">
 
-
+            <label>Amount Details</label>
             <input 
                 type="text"
                 placeholder="Enter Amount"
                 name="amount"
                 id="amount-to-post"
                 >
+        
+        </div>
 
-            <input 
+
+        <div id="div-input-date-to-post">
+
+            
+            <label>Date Details</label>
+
+            <input
+                
                 type="date"
                 placeholder="Enter Date of Payment"
                 name="date"
-                id="'date-to-post"
+                id="date-to-post"
                 >
+        </div>
 
-            <button type="submit">Post</button>
+            <button id="post-button" type="submit">Post It</button>
 
             </form>
+        
+        <img id='img-posting-expenses-page'src="../static/calculator.svg" alt="person-doing-some-calculatioin" >
     </div>
 
     

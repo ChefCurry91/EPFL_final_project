@@ -1,11 +1,392 @@
-h1 {
-    color: red;
+
+/* #41436A, #984063, # F64668, #FE9677 */
+/* #5193B3, #62C4C3. #F8D49B, #F8E6CB */
+
+* {
+    box-sizing: border-box;
 }
 
-.container-posting-expenses {
+/********* INDEX PAGE ************* */
+
+/* container for entire page */
+
+
+.general-container {
+    padding: 0 0 0 1em;
+    background: linear-gradient(to bottom, #FFF, #41436A 300%);
+    border:1px dashed transparent;
+
+}
+
+
+/* nav tag */
+
+
+nav {
+    padding: 0.5em 0.2em 0 0.2em;
+    padding: 0.5em 1.5em 0 1.5em;
+
+}
+
+
+/* ul located in navbar */
+
+.ul-nav {
     display: flex;
-    flex-direction: row;
-    padding: 2em;
-    border: 1px solid black;
+    flex-direction: column;
+    list-style: none;
+    font-size: 24px;
+    padding:0 0 0 0.2em;
+    width: 90%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; /* https://getcssscan.com/css-box-shadow-examples */
+
+}
+
+/* li part of ul located in navbar */
+
+li {
+    text-decoration: none;
+    color: #FFF;
+    line-height: 1.8;
+}
+
+/* link part of unorder list located in navbar */
+
+.ul-nav a {
+    text-decoration: none; /*remove underline from link*/
+    color: #41436A;
+    font-weight: bolder;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.4s ease;
     
+}
+
+
+
+.ul-nav a:hover {
+    color: #000;
+    border-color: #000;
+}
+
+
+
+/* Title */
+
+#BudgetBuddy-index-page {
+    font-size: 30px;
+    margin: 2.5em 0 1em 1em;
+    color: #984063;
+    font-weight: bolder;
+    font-style: italic;
+}
+
+/* Slogan "Your Trusted Partner in Financial Management!" */
+
+#slogan-index-page{
+    font-size: 22px;
+    font-style: italic;
+    margin-top:0;
+}
+
+
+/* class applied to 3 paragraphs explaing the benefit of App */
+
+.introductory-paragrap-index-page {
+    text-align:justify;
+    margin-top: 2em;
+    margin-left: 1.5em;
+    width: 86%;
+    line-height: 1.2;
+    font-size: 18px;
+    color: #41436A;
+    color: #000;
+    letter-spacing: 1.2px;
+    font-weight: bolder;
+    
+}
+
+#last-paragrap-index-page {
+    text-align:justify;
+    margin-top: 2em;
+    margin-left: 1.5em;
+    width: 86%;
+    line-height: 1.2;
+    font-size: 18px;
+    color: #984063;
+    letter-spacing: 1.2px;
+    font-weight: bolder;
+
+}
+
+/* corresponds to imported "spreadsheet.svg" */
+
+#img-index-page{
+    width: 60%;
+    display: block;
+    margin: 6em auto;
+   
+}
+
+
+/********* POSTING EXPENSES PAGE ************* */
+
+/* form containing input */
+
+#form-for-posting-expenses {
+    max-width: 90%;
+    padding: 2em 1.5em;
+    margin: 3em 1em;
+    background: #FFF;
+    display: grid;
+    grid-gap: 2em 2em;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto; /* Three rows with auto sizing */
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    border-radius: 12px;
+    color:#41436A;
+    background: linear-gradient(124deg, #FFF, #41436A 500%);
+
+   
+}
+
+
+#title-form-posting-expenses {
+    grid-row: 1;
+    grid-column: 0/2;
+    font-size: 26px;
+    font-weight:bolder;
+    font-style: italic;
+    margin-top: .75em;
+    margin-bottom: .5em;
+    letter-spacing: 2px;
+    
+}
+
+label {
+    font-size: 21px;
+    font-weight:bolder;
+    font-style: italic;
+    letter-spacing: 1.6px;
+    line-height: 1.2;
+}
+
+
+#div-input-expenses, #div-currency-to-post, #div-amount-to-post, #div-input-date-to-post  {
+    display:flex;
+    flex-direction: column;
+   
+}
+
+#date-to-post, #post-button, #amount-to-post, #list-currency, #input-expenses {
+    border-radius: 7px;
+    padding: 1em .66em;
+    margin-top: 1em;
+    font-size: 15px;
+    letter-spacing: 1.6px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bolder;
+    outline: none; /* Remove outline */
+    box-shadow: none; /* Remove box shadow */
+    border:none; /* Remove border */
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+#div-input-expenses{
+    grid-row: 2; /* spans the first row */
+    grid-column: 0 / 2; /* Spans from column 2 to column 3 */
+
+
+}
+
+
+
+#input-expenses{
+    width: 250px;
+    width: 19rem;
+        
+}    
+
+#div-currency-to-post{
+    grid-row:3;
+    grid-column:0/2;
+}
+
+#list-currency{
+    width: 300px;
+    text-align: center; /* Item 2 starts at column 1 */
+
+
+}
+
+#div-amount-to-post {
+    grid-row: 4;
+    grid-column: 0/2; /* Item 3 continues at column 2 */
+}
+
+#amount-to-post {
+    width: 200px;
+}
+
+#div-input-date-to-post {
+    grid-row: 5;
+    grid-column: 0/2;
+}
+
+#date-to-post {
+    width: 200px;
+}
+
+#post-button {
+    grid-row: 6; /* Item 5 spans the last row */
+    grid-column: 0/1; /* Spans from column 2 to column 3 */
+    margin-left: auto;
+    background: #984063;
+    color: #FFF;
+    transition: background 0.4s ease, color 0.4s ease; 
+    width: 175px;
+
+
+}
+
+#post-button:hover{
+    background:#FFF;
+    color:#41436A;
+}
+
+#img-posting-expenses-page {
+    display:none
+}
+
+
+
+@media (min-width: 800px) {
+
+
+    #post-button {
+        margin-top: 3em;
+        margin-bottom: 1em;
+        margin-right: 3em;
+        width: 200px;
+    }
+
+}
+
+
+
+@media (min-width: 1000px) {
+
+
+
+    .general-container {
+        background: linear-gradient(to bottom, #FFF, #41436A 250%);
+        padding: 1em 4em 0;
+
+    }
+
+
+
+   /********* INDEX PAGE ************* */
+
+    /* nav tag */
+    
+    
+    nav {
+        padding: 0em 0.2em 0 0.2em;
+        padding: 1em;
+        border-left: 3px dotted #984063;
+        border-top: 2px groove #984063;
+        border-radius: 10px;
+    }
+
+    .ul-nav {
+        display: flex;
+        flex-direction: row;
+        font-size: 24px;
+        justify-content: space-between;
+        padding:0 0;
+        width: 100%;
+        box-shadow: none;
+    
+    }
+
+    /*#slogan-index-page{
+        border-right: 3px dotted #984063;
+        border-bottom: 1px dashed #984063;
+        border-radius: 10px;
+        padding: 0 .5em .2em 0;
+    } */
+
+
+    .introductory-paragrap-index-page {
+        max-width: 900px;
+        font-size: 22px
+    }
+
+    #last-paragrap-index-page {
+        max-width: 900px;
+        font-size: 22px
+
+    }
+
+    #img-index-page{
+        display: block;
+        margin-top: 4em;
+        margin-right: 6em;
+        width: 40%
+       
+    }
+
+
+
+    /********* POSTING EXPENSES PAGE ************* */
+
+    #form-for-posting-expenses {
+        max-width: 825px;
+        margin-bottom: 3em;
+    }
+}
+
+
+@media (min-width: 1200px) {
+
+    #img-posting-expenses-page{
+        display: block;
+        width: 400px;
+        position: absolute;
+        top: 33%;
+        right: 10%;
+
+    }
+
+}
+
+
+    @media (min-width: 1500px) {
+
+
+    #img-posting-expenses-page{
+        display: block;
+        width: 500px;
+        position: absolute;
+        top: 33%;
+        right: 19%;
+
+    }
+
+
+}
+
+
+
+
+
+.hello{
+    color: blue;
+    border:1px solid black
+}
+
+.h {
+    border: 1px solid red
 }
