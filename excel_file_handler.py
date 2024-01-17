@@ -42,7 +42,6 @@ class FileHandler():
             sheet[letter +'1'].font=bold_font_italic_16
             sheet.column_dimensions[letter].width =  35
             
-
         file_name = 'expenses.xlsx'
 
         # Joining Paths with os.path.join
@@ -214,11 +213,23 @@ class FileHandler():
             break_line ='\n'
             my_file.write(break_line)
 
+        # content added to file
+            
+        # https://realpython.com/iterate-through-dictionary-python/
+
+
             for key, value in data_expense.items():
-                value_stringified= str(value) + ' '
-                content_file = value_stringified
-                my_file.write(content_file)
+               value_stringified= str(value) + ' '
+               content_file = value_stringified
+               my_file.write(content_file)
             my_file.close()
+
+           # for item in data_expense.items():
+            #    print(item)
+             #   item_stringified = str(item) + ' '
+              #  content_file=item_stringified
+               # my_file.write(content_file)
+           # my_file.close()
         
         else:
             for key, value in data_expense.items():
@@ -233,9 +244,15 @@ class FileHandler():
         content = my_file.read()
         my_file.close()
         array_expenses = content.split('\n')
+        
+        #print(array_expenses)
+        #return array_expenses
+        
+        
+        
         two_dimensional_array_expenses = []
         for i in array_expenses:
             x = i.split()
             two_dimensional_array_expenses.append(x)
-        print(two_dimensional_array_expenses)
+            print(two_dimensional_array_expenses)
         return two_dimensional_array_expenses

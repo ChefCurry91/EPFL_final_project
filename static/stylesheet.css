@@ -178,7 +178,7 @@ label {
    
 }
 
-#date-to-post, #post-button, #amount-to-post, #list-currency, #input-expenses {
+#date-to-post, #post-button, #amount-to-post, #list-currency, #expense-to-post {
     border-radius: 7px;
     padding: 1em .66em;
     margin-top: 1em;
@@ -202,7 +202,7 @@ label {
 
 
 
-#input-expenses{
+#expense-to-post{
     width: 250px;
     width: 19rem;
         
@@ -257,6 +257,135 @@ label {
 
 #img-posting-expenses-page {
     display:none
+}
+
+
+
+
+.tableau-recording-expenses {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+    justify-content: space-around;
+}
+
+
+
+/********* Tracking EXPENSES PAGE ************* */
+
+
+/* wrapper for the entire page */
+
+#general-container-tracking {
+    padding: .75em;
+    background: linear-gradient(to bottom, #FFF, #41436A 300%);
+    min-height: 100vh;
+}
+
+/* Title BudgetBuddy... */
+
+
+#title-tracking-expenses-page {
+    margin: 2em auto 1em auto;
+    width: 550px;
+    font-style: italic;
+    color:#984063;
+
+
+}
+
+/* container wrapping all the row representing an expense, it includes the label */
+
+
+.container-only-for-track-expenses {
+    width: 570px;
+    margin: 0 auto;
+    
+}
+
+/* Each expense is wrapped by a div */
+
+
+.container-per-expense {
+    padding: 0 1em 0 0;
+    display:flex;
+
+}
+
+/* Concerns only the first row, it wrapps the label as well as the values associated to the label */
+
+#container-label-title {
+    display:flex;
+    flex-direction: column;
+    width: 125px;
+    text-align: center;
+    padding: 0;
+}
+
+/* IDs label represent each label present on the first row*/
+
+#label-0,#label-1,#label-2,#label-3,#label-4{
+    font-style: italic;
+    font-size: 17px;
+    color:#000;
+    display:inline-block;
+    text-decoration: underline 2px #984063;
+  
+}
+
+/* IDs value represent each value present on the first row*/
+
+
+#value-0,#value-1,#value-2,#value-3,#value-4 {
+    padding: 0.65em 0 0.65em 0;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    margin-left:.3em;
+    margin-bottom: .8em;
+    transition: box-shadow 0.3s ease-in-out;
+
+
+}
+
+/* Represent each value per row except the first row*/
+
+
+.values {
+    width: 125px;
+    text-align: center;
+    padding: 0.65em 0 0.65em 0;
+    margin-bottom: 0.8em;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    margin-left:.3em;
+    transition: box-shadow 0.3s ease-in-out;
+
+
+}
+
+/* When hovering over the containers wrapping each row representing an expense, visual transformation of the values  */
+
+
+.container-per-expense:hover .values {
+    box-shadow: rgba(152, 64, 99, 0.25) 0px 4px 8px -1px, rgba(152, 64, 99, 0.08) 0px 0px 0px 1px, 0 0 0 1px #984063;
+    font-weight: bolder;
+    color:#984063;
+
+}
+
+.container-per-expense:hover #value-0,
+.container-per-expense:hover #value-1,
+.container-per-expense:hover #value-2,
+.container-per-expense:hover #value-3,
+.container-per-expense:hover #value-4 {
+    box-shadow: rgba(152, 64, 99, 0.25) 0px 4px 8px -1px, rgba(152, 64, 99, 0.08) 0px 0px 0px 1px, 0 0 0 1px #984063;
+    color:#984063;
+    font-weight: bolder;
+
+}
+
+.aggregate-expenses {
+    margin-top: 1em;
+    font-size: 18px;
+    width: 400px;
 }
 
 
@@ -363,7 +492,7 @@ label {
 }
 
 
-    @media (min-width: 1500px) {
+@media (min-width: 1500px) {
 
 
     #img-posting-expenses-page{
@@ -379,14 +508,19 @@ label {
 }
 
 
+@media (min-width: 1600px) {
 
 
+    #img-posting-expenses-page{
+        display: block;
+        width: 500px;
+        position: absolute;
+        top: 60%;
+        right: 7%;
 
-.hello{
-    color: blue;
-    border:1px solid black
+    }
+
+
 }
 
-.h {
-    border: 1px solid red
-}
+
