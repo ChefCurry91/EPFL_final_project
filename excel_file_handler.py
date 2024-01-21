@@ -194,7 +194,6 @@ class FileHandler():
         except:
             return 
         
-    #def add_data_in_txt_file(self,expense,date,currency_payment,amount,converted_amount):
     def add_data_to_txt_file(self,data_expense,file_name):
         my_file = open(self.file_name, 'a')
 
@@ -256,3 +255,31 @@ class FileHandler():
             two_dimensional_array_expenses.append(x)
             print(two_dimensional_array_expenses)
         return two_dimensional_array_expenses
+    
+    def clear_all_data_txt_file(self):
+        my_file_to_delete = open(self.file_name,'w')
+        my_file_to_delete.close()
+
+    
+    def clear_all_data_excel_sheet(self):
+
+        # Joining Paths with os.path.join
+        # https://ioflood.com/blog/python-os-path/#:~:text=In%20this%20example%2C%20we're,to%20a%20user's%20documents%20directory.
+        
+        file_name = 'expenses.xlsx'
+        file_path = os.path.join(self.path, file_name)
+
+        # For excel sheet manipulation, I relied on the following source:
+        # Automate the Boring Stuff with Python: Practical Programming for Total Beginners by AI Sweighart
+        # https://automatetheboringstuff.com/2e/chapter13/
+
+        # Opening Excel Documents with OpenPyXL
+        wb = load_workbook(file_path)
+        
+        sheet = wb['Sheet']
+
+        sheet.delete_rows(1,sheet.max_row)
+        wb.save(file_path)
+        
+        
+

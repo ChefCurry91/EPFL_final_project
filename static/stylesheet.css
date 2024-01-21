@@ -16,6 +16,7 @@
     background: linear-gradient(to bottom, #FFF, #41436A 300%);
     border:1px dashed transparent;
 
+
 }
 
 
@@ -40,6 +41,7 @@ nav {
     width: 90%;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; /* https://getcssscan.com/css-box-shadow-examples */
 
+
 }
 
 /* li part of ul located in navbar */
@@ -48,6 +50,7 @@ li {
     text-decoration: none;
     color: #FFF;
     line-height: 1.8;
+
 }
 
 /* link part of unorder list located in navbar */
@@ -58,6 +61,7 @@ li {
     font-weight: bolder;
     border-bottom: 1px solid transparent;
     transition: border-color 0.4s ease;
+
     
 }
 
@@ -78,14 +82,20 @@ li {
     color: #984063;
     font-weight: bolder;
     font-style: italic;
+    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
+
+
+
+
 }
 
 /* Slogan "Your Trusted Partner in Financial Management!" */
 
 #slogan-index-page{
-    font-size: 22px;
+    font-size: 20px;
     font-style: italic;
     margin-top:0;
+
 }
 
 
@@ -98,10 +108,12 @@ li {
     width: 86%;
     line-height: 1.2;
     font-size: 18px;
-    color: #41436A;
     color: #000;
     letter-spacing: 1.2px;
     font-weight: bolder;
+    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
+
+
     
 }
 
@@ -115,6 +127,9 @@ li {
     color: #984063;
     letter-spacing: 1.2px;
     font-weight: bolder;
+    filter: drop-shadow(12px 12px 5px rgba(0, 0, 0, 0.2));
+
+
 
 }
 
@@ -124,6 +139,8 @@ li {
     width: 60%;
     display: block;
     margin: 6em auto;
+    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
+
    
 }
 
@@ -141,11 +158,12 @@ li {
     grid-gap: 2em 2em;
     grid-template-columns: 1fr;
     grid-template-rows: auto; /* Three rows with auto sizing */
-    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
     box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
     border-radius: 12px;
     color:#41436A;
     background: linear-gradient(124deg, #FFF, #41436A 500%);
+    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
+
 
    
 }
@@ -160,6 +178,8 @@ li {
     margin-top: .75em;
     margin-bottom: .5em;
     letter-spacing: 2px;
+    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
+
     
 }
 
@@ -169,6 +189,7 @@ label {
     font-style: italic;
     letter-spacing: 1.6px;
     line-height: 1.2;
+
 }
 
 
@@ -246,7 +267,7 @@ label {
     color: #FFF;
     transition: background 0.4s ease, color 0.4s ease; 
     width: 175px;
-
+    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
 
 }
 
@@ -255,9 +276,11 @@ label {
     color:#41436A;
 }
 
-#img-posting-expenses-page {
+#message-img-posting-expenses {
     display:none
 }
+
+
 
 
 
@@ -280,17 +303,19 @@ label {
     padding: .75em;
     background: linear-gradient(to bottom, #FFF, #41436A 300%);
     min-height: 100vh;
+
 }
 
 /* Title BudgetBuddy... */
 
 
 #title-tracking-expenses-page {
-    margin: 2em auto 1em auto;
-    width: 550px;
+    margin: 3em auto 2em auto;
+    width: 450px;
+    font-size: 18px;
     font-style: italic;
     color:#984063;
-
+    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
 
 }
 
@@ -298,8 +323,9 @@ label {
 
 
 .container-only-for-track-expenses {
-    width: 570px;
+    width: 470px;
     margin: 0 auto;
+
     
 }
 
@@ -326,10 +352,18 @@ label {
 
 #label-0,#label-1,#label-2,#label-3,#label-4{
     font-style: italic;
-    font-size: 17px;
+    font-size: 15px;
     color:#000;
     display:inline-block;
-    text-decoration: underline 2px #984063;
+    /*text-decoration: underline 2px #984063; */
+    font-weight: bolder;
+    filter: drop-shadow(12px 12px 20px rgba(152, 64, 99, 0.2));
+
+
+    
+    
+
+
   
 }
 
@@ -339,11 +373,12 @@ label {
 #value-0,#value-1,#value-2,#value-3,#value-4 {
     padding: 0.65em 0 0.65em 0;
     box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    border-radius: 7px;
     margin-left:.3em;
     margin-bottom: .8em;
     transition: box-shadow 0.3s ease-in-out;
-
-
+    font-size: 15px;
+    
 }
 
 /* Represent each value per row except the first row*/
@@ -352,11 +387,15 @@ label {
 .values {
     width: 125px;
     text-align: center;
-    padding: 0.65em 0 0.65em 0;
+    padding: 0.62em 0 0.62em 0;
     margin-bottom: 0.8em;
     box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    border-radius: 7px;
     margin-left:.3em;
     transition: box-shadow 0.3s ease-in-out;
+    font-size: 15px;
+
+   
 
 
 }
@@ -382,16 +421,175 @@ label {
 
 }
 
-.aggregate-expenses {
-    margin-top: 1em;
+
+#get-you-cover-message{
+    color:#984063;
+    font-weight: bolder;
+    font-style: italic;
+    margin: 3em 0;
+    text-align: center;
+    font-size: 20px;
+    filter: drop-shadow(12px 12px 20px rgba(152, 64, 99, 0.2));
+}
+    
+
+#img-tracking-expense-page {
+    display: none;
+}
+
+.container-aggregate-expenses {
+    display:flex;
+    flex-direction: column;
+    margin-top: 4em;
+    margin-bottom: 2em;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; /* https://getcssscan.com/css-box-shadow-examples */
+    width: 460px;
+    border-radius: 12px;
+    background: linear-gradient(to bottom, #FFF, #41436A 600% );
+    box-shadow: 0px 9px 30px rgba(152, 64, 99, 0.1);
+    padding: 0 0 1.25em 0;
+
+}
+
+#total-payment-owerview {
+    color: #41436A;
+    font-weight: bolder;
+    font-style: italic;
     font-size: 18px;
-    width: 400px;
+    margin-left: 1.25em;
+    margin-top:2em;
+    letter-spacing: 1.6px;
+    filter: drop-shadow(12px 12px 2px rgba(152, 64, 99, 0.2));
+
+
+
+
+}
+
+.aggregate-expenses-CHF, .aggregate-expenses {
+    display:flex;
+    text-align: center;
+    margin-left: 1.75em;
+    justify-content: space-between;
+    margin-top: .5em;
+
 }
 
 
 
+.label-agreggate-expenses {
+    font-size: 16px;
+    font-style: italic;
+    align-self: center;
+    color: #41436A;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.4s ease;
+
+}
+
+.total-amount-expenses {
+    margin-right: 2.5em;
+    letter-spacing: 1.6px;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bolder;
+
+}
+
+.aggregate-expenses-CHF:hover .label-agreggate-expenses,
+.aggregate-expenses:hover .label-agreggate-expenses {
+    color:#984063;
+    border-color:#984063
+}
+
+.aggregate-expenses-CHF:hover .total-amount-expenses,
+.aggregate-expenses:hover .total-amount-expenses {
+    color:#984063 
+}
+
+#clear-all-button {
+    display: block;
+    background: #984063;
+    color: #FFF;
+    transition: background 0.4s ease, color 0.4s ease; 
+    width: 175px;
+    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
+    cursor:pointer;
+    border-radius: 7px;
+    padding: 1em .66em;
+    margin: 2.5em 1em 1.5em auto;
+    font-size: 15px;
+    letter-spacing: 1.6px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bolder;
+    outline: none; /* Remove outline */
+    box-shadow: none; /* Remove box shadow */
+    border:none; /* Remove border */
+    transition: background 0.4s ease, color 0.4s ease;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
+
+
+}
+
+
+#clear-all-button:hover {
+    background:#FFF;
+    color:#41436A;
+}
+
+
+@media (min-width: 750px) {
+
+    /******* TRACKING EXPENSES ********/
+
+    #title-tracking-expenses-page {
+        font-size: 22px;
+        width: 525px;
+        margin-left: 1.5em;
+        margin-right: 0;
+        
+    }
+
+
+
+    .container-only-for-track-expenses {
+        margin: 0 0 0 1.25em;
+        width: 725px;
+
+        
+    }
+
+    #container-label-title {
+        width: 136px;
+    }
+
+    .values {
+        width: 131.5px;
+    }
+
+    #get-you-cover-message{
+        text-align: start;
+        margin-left: 1em;
+    }
+
+    .container-aggregate-expenses {
+        width: 525px;
+    }
+
+    #clear-all-button {
+        margin: 3em auto 2em .25em;
+    }
+
+
+
+}
+
+
 @media (min-width: 800px) {
 
+    /********* POSTING PAGE ************* */
 
     #post-button {
         margin-top: 3em;
@@ -405,7 +603,6 @@ label {
 
 
 @media (min-width: 1000px) {
-
 
 
     .general-container {
@@ -427,6 +624,7 @@ label {
         border-left: 3px dotted #984063;
         border-top: 2px groove #984063;
         border-radius: 10px;
+
     }
 
     .ul-nav {
@@ -449,7 +647,7 @@ label {
 
 
     .introductory-paragrap-index-page {
-        max-width: 900px;
+        max-width: 990px;
         font-size: 22px
     }
 
@@ -474,35 +672,140 @@ label {
     #form-for-posting-expenses {
         max-width: 825px;
         margin-bottom: 3em;
+
     }
+
+    /********* Tracking EXPENSES PAGE ************* */
+
+    #get-you-cover-message{
+        text-align: center;
+        margin-left: 0;
+    }
+ 
+
+    .container-only-for-track-expenses {
+       /* margin: 0 0 1em 1.5em; */
+        width: 725px;
+        margin: 0 auto 1em auto;
+        
+    }
+
+    .container-aggregate-expenses {
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, #11111a1a 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+        margin: 4em auto;
+    }
+
+    #clear-all-button {
+        margin: 3em 7em 2em auto;
+    }
+
+    
+
+
 }
 
 
 @media (min-width: 1200px) {
 
-    #img-posting-expenses-page{
-        display: block;
-        width: 400px;
-        position: absolute;
-        top: 33%;
-        right: 10%;
+    #title-form-posting-expenses {
+        color:#984063;
 
+    }
+
+    #message-img-posting-expenses{
+        position: absolute;
+        width: 40%;
+        top: 50%;
+        right: 10%;
+        display:block;
+        margin-right: 1.5em;
+
+    }
+    
+    #message-posting-expenses-page{
+        font-size: 20px;
+        width: 600px;
+        font-style: italic;
+        font-weight: bolder;
+        color:#984063;
+        filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
+
+
+    }
+
+    #img-posting-expenses-page{
+        width: 80%;
+        filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
+
+    }
+}
+
+@media (min-width: 1400px) {
+
+    #message-img-we-get-you-cover{
+        display:block;
+        position: absolute;
+        right: 8em;
+        bottom: -12em;
+        filter: drop-shadow(12px 12px 2px rgba(152, 64, 99, 0.2));
+        padding: 3em;
+        border-radius: 12%;
+        width: 40%;
+        right: 2em;
+        bottom: -12em;
+    }
+
+    #get-you-cover-message {
+        font-size: 21px;
+        color:#984063;
+        font-weight: bolder;
+        font-style: italic;
+        margin-bottom: 3em;
+
+    }
+
+    #img-tracking-expense-page {
+        width: 90%;
+        display: unset
+        
+        
+    }
+
+    .container-only-for-track-expenses {
+        /* margin: 0 0 1em 1.5em; */
+         width: 725px;
+         margin: 0 auto 1em auto;
+         margin: 0 0 1em 3em;
+         
+     }
+ 
+     .container-aggregate-expenses {
+         box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, #11111a1a 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+         margin: 10em auto 4em 3em;
+        /*https://htmlcssfreebies.com/css-box-shadow-examples/ */
+         box-shadow: 0px 9px 30px rgba(152, 64, 99, 0.1);
+     }
+
+     #clear-all-button {
+        margin: 3em auto 2em 3.5em;
     }
 
 }
 
 
-@media (min-width: 1500px) {
+@media (min-width: 1400px) {
 
-
-    #img-posting-expenses-page{
-        display: block;
-        width: 500px;
-        position: absolute;
-        top: 33%;
-        right: 19%;
+    #message-img-posting-expenses{
+        right: 15%;
 
     }
+
+    #img-posting-expenses-page{
+        margin-top:3em;
+
+    }
+
+
 
 
 }

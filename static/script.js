@@ -4,42 +4,33 @@
 const postButton = document.getElementById('post-button');
 
 
-const inputTextExpenses = document.getElementById('expense-to-post');
-//const selectOptionCurrency = document.getElementById('list-currency');
-//const inputTextDate = document.getElementById('date-to-post');
-//const inputTextAmount = document.getElementById('amount-to-post');
-
-const content = document.getElementById('tableau-expenses');
-const div = document.getElementById('div-label-value');
-
-//const arrayInputUser = [inputTextExpenses]
-//const arrayInputUser = [inputTextExpenses,selectOptionCurrency,inputTextDate,inputTextAmount];
-//console.log(arrayInputUser)
-
-{/* each variable is related to a div representing a column, each column containing a piece of information */}
-
-const contentExpensesColumn = document.getElementById('column-expenses-name');
-//onst contentDateColumn = document.getElementById('column-payment-date');
-//const contentPaymentCurrencyColumn = document.getElementById('column-payment-currency');
-//const contentOriginalAmountColumn = document.getElementById('column-original-amount');
-/* const contentAmountCHFColumn = document.getElementById('column-amount-CHF'); */
-
-const arrayContentToBeAdded = [contentExpensesColumn]
-console.log(arrayContentToBeAdded)
-//const arrayContentToBeAdded = [contentExpensesColumn, contentDateColumn, contentPaymentCurrencyColumn, contentOriginalAmountColumn];
 
 
-const addExpensesData = () => {
 
-    for (let index = 0; index <arrayContentToBeAdded.length; index++) {
-        const newElement = document.createElement('p');
-        console.log(newElement);
-        const inputUser = arrayInputUser[index];
-        console.log(inputUser);
-        console.log(arrayContentToBeAdded)
-        newElement.innerText = inputUser.value;
-        arrayContentToBeAdded[index].appendChild(newElement)
-       // content.appendChild(newElement);
-    }
+
+const checkPreventEmptyValues = (event) => {
+    
+    var expense = document.getElementById('expense-to-post').value;
+    var amount = document.getElementById('amount-to-post').value;
+    var currencyPayment = document.getElementById('list-currency').value;
+    var date = document.getElementById('date-to-post').value;
+
+    // Check if any field is empty or for currency payment that one the option is selected
+    if (!expense.trim() || !amount.trim() || !date.trim() || currencyPayment === "---Choose Currency Payment---" ) {
+        // Prevent form submission
+        event.preventDefault();
+        alert('Please fill in all required fields.');
+     }
+
+     else if (isNaN(amount) ) {
+        event.preventDefault();
+        alert('Please fill in the field with a valid number regarding the amount.');
+        
+     }
 };
+
+
+
+
+postButton.addEventListener('click',checkPreventEmptyValues)
 

@@ -46,15 +46,9 @@ def post_expenses():
     amount = request.form.get('amount')
     expense= request.form.get('expense')
     date= request.form.get('date')
-
-    
-
-    
-    
     currency_payment = request.form.get('currency-payment')
-    #currency_conversion= request.form.get('currency-conversion')
     
-
+    
 
     if request.method == 'POST':
         #amount= round(float(amount), 2)
@@ -89,48 +83,48 @@ def post_expenses():
             'amount_CHF':converted_amount
         }
 
-        my_file_handler.add_data_to_excel_sheet(dict_expense)
-        #my_file_handler.add_data_in_txt_file(expense,date,currency_payment,amount,converted_amount)
+        # Add input to txt file
         my_file_handler.add_data_to_txt_file(dict_expense, file)
+        # Get input from txt file as two dimensional array
+        array_expenses = my_file_handler.get_data_added_to_txt_file()
+        # Count the number of row for the two dimensional array
+        number_of_rows = len(array_expenses)
+       
+       
+        # Only if the two dimensional array "array_expenses" as one single row
+        # call function create_excel_sheet() 
+
+        if number_of_rows == 1:
+            my_file_handler.create_excel_sheet()
+            my_file_handler.add_data_to_excel_sheet(dict_expense)
+
+        # if two dimensional array "array_expenses" has more than one row
+        # do not call function create_excel_sheet 
+        else:
+            my_file_handler.add_data_to_excel_sheet(dict_expense)
 
        
     return page
 
 
 
-@app.route('/tracking-expenses')
+@app.route('/tracking-expenses', methods = ['POST', 'GET'])
 def track_expenses():
     page= get_html('tracking-expenses')
+
+    if request.method == 'POST':
+        my_file_handler.clear_all_data_txt_file()
+        my_file_handler.clear_all_data_excel_sheet()
+
     array_expenses = my_file_handler.get_data_added_to_txt_file()
     
     actual_values=''
-    #actual_values ='<div class="transaction-item">Item'
-    
-    expense = array_expenses[0][0]
-    payment_date = array_expenses[0][1]
-    currency_payment = array_expenses[0][2]
-    amount = float(array_expenses[0][3])
-    amount_in_chf = float(array_expenses[0][4])
 
-    transformed_dict = {
-        'Expense': expense,
-        'Date of Payment': payment_date,
-        'Currency Payment': currency_payment,
-        'Original Amount': amount,
-        'Amount in CHF': amount_in_chf
-    }
-
-    #array_expenses_to_be_modified = array_expenses
-    #removed_element = array_expenses_to_be_modified.pop(0)
-    #array_expenses_to_be_modified.insert(0, transformed_dict)
- 
-    
-    # Extract values from imported dictionary "dict_data_title_columnand" and create a list
-   # label_list = list(dict_data_title_column.values())
     
     label_list = ['Expense', 'Date', 'Currency','Payment', 'Payment CHF' ]
     
 
+    aggregate_expense_in_CHF = 0
     total_amount_in_CHF= 0
     total_amount_in_EUR = 0
     total_amount_in_GBP = 0
@@ -145,21 +139,27 @@ def track_expenses():
             index_label_list=0
             for element in inner_array:
 
+                
+
                 current_label =label_list[index_label_list]
 
                 actual_values += f'<div id="container-label-title"><h4 id="label-{index_label_list}">{current_label}</h4><p id="value-{index_label_list}">{element}</p></div>'
                 
                 if current_label == 'Payment CHF':
-                    total_amount_in_CHF+=float(element)
+                    aggregate_expense_in_CHF+= round(float(element),2)
+                
+
+                elif current_label == 'Currency' and element == 'CHF':
+                    total_amount_in_CHF+= round(float(inner_array[3]),2)
 
                 elif current_label == 'Currency' and element == 'EUR':
-                    total_amount_in_EUR+= float(inner_array[3])
+                    total_amount_in_EUR+= round(float(inner_array[3]),2)
 
                 elif current_label == 'Currency' and element == 'GBP':
-                    total_amount_in_GBP+= float(inner_array[3])
+                    total_amount_in_GBP+= round(float(inner_array[3]),2)
                 
                 elif current_label == 'Currency' and element == 'USD':
-                    total_amount_in_USD+= float(inner_array[3])
+                    total_amount_in_USD+= round(float(inner_array[3]),2)
                 
                 
                 index_label_list+=1
@@ -177,37 +177,38 @@ def track_expenses():
                 actual_values += f'<div class="values"><span>{element}</span></div>'
                 
                 if current_label == 'Payment CHF':
-                    total_amount_in_CHF+=float(element)
+                    aggregate_expense_in_CHF+=round(float(element),2)
+
+                elif current_label == 'Currency' and element == 'CHF':
+                    total_amount_in_CHF+= round(float(inner_array[3]),2)
                 
                 elif current_label == 'Currency' and element == 'EUR':
-                    total_amount_in_EUR+= float(inner_array[3])
+                    total_amount_in_EUR+= round(float(inner_array[3]),2)
                 
                 elif current_label == 'Currency' and element == 'GBP':
-                    total_amount_in_GBP+= float(inner_array[3])
+                    total_amount_in_GBP+= round(float(inner_array[3]),2)
                 
                 elif current_label == 'Currency' and element == 'USD':
-                    total_amount_in_USD+= float(inner_array[3])
+                    total_amount_in_USD+= round(float(inner_array[3]),2)
                 
                 index+= 1
             actual_values+='</div>'
-
-    actual_values += f'<div class="aggregate-expenses"><p>Aggregate Expenses in CHF: {total_amount_in_CHF}</p></div>'
-    actual_values += f'<div class="aggregate-expenses"><p>Aggregate Expenses in EUR: {total_amount_in_EUR}</p></div>'
-    actual_values += f'<div class="aggregate-expenses"><p>Aggregate Expenses in GBP: {total_amount_in_GBP}</p></div>'
-    actual_values += f'<div class="aggregate-expenses"><p>Aggregate Expenses in US: {total_amount_in_USD}</p></div>'
-
-    print('Sum total expenses in CHF:', total_amount_in_CHF)
+    
+    actual_values += '<div id="message-img-we-get-you-cover"><p id="get-you-cover-message">Like a Good Buddy, It Get You Covered</p><img id="img-tracking-expense-page" src ="./static/friendship.svg" alt="people-hanging-out"></div>'
+    actual_values += '<div class ="container-aggregate-expenses">'
+    actual_values += '<p id="total-payment-owerview">Total Payments Overview</p>'
+    actual_values += f'<div class="aggregate-expenses-CHF"><label class="label-agreggate-expenses">Aggregate Expenses in CHF: </label> <p class="total-amount-expenses">{aggregate_expense_in_CHF}</p></div>'
+    actual_values += f'<div class="aggregate-expenses"><label class="label-agreggate-expenses">Total Payments CHF: </label> <p class="total-amount-expenses"> {total_amount_in_CHF}</p></div>'
+    actual_values += f'<div class="aggregate-expenses"><label class="label-agreggate-expenses">Total Payments €: </label> <p class="total-amount-expenses"> {total_amount_in_EUR}</p></div>'
+    actual_values += f'<div class="aggregate-expenses"><label class="label-agreggate-expenses">Total Payments £:</label> <p class="total-amount-expenses"> {total_amount_in_GBP}</p></div>'
+    actual_values += f'<div class="aggregate-expenses"><label class="label-agreggate-expenses">Total Payments $: </label> <p class="total-amount-expenses"> {total_amount_in_USD}</p></div>'
+    actual_values += '</div>'
+    print('Sum total expenses in CHF:', aggregate_expense_in_CHF)
 
     
     return page.replace('<p>Track expenses</p>',actual_values)
 
 
-
-
-    
-
-
-    return page
 
 
 
