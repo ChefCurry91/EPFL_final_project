@@ -3,10 +3,7 @@
 
 const postButton = document.getElementById('post-button');
 
-
-
-
-
+{/* Function aiming to prevent empty values and non-numerical values for input box in Form */}
 
 const checkPreventEmptyValues = (event) => {
     
@@ -29,8 +26,46 @@ const checkPreventEmptyValues = (event) => {
      }
 };
 
+// Get the modal
+var modal = document.getElementById("modal-index-page");
+
+// Get the button that opens the modal
+var btn = document.getElementById("create-new-excel-sheet");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close-modal")[0];
+
+
+// When the user clicks on the button, open the modal
+btn.onclick = () => {
+   modal.style.display = "block";
+ }
+
+ // When the user clicks on <span> (x), close the modal
+span.onclick = () => {
+   modal.style.display = "none";
+ }
+
+ // When the user clicks anywhere outside of the modal, close it
+window.onclick = (event) => {
+   if (event.target == modal) {
+     modal.style.display = "none";
+   }
+ }
 
 
 
-postButton.addEventListener('click',checkPreventEmptyValues)
+postButton.addEventListener('click',checkPreventEmptyValues);
 
+
+
+// variable related to select tag located in tracking-expenses page 
+
+const selectSheetTrackingExpenses = document.getElementById('dropdown-excel-sheets-tracking-expenses');
+
+// Variable related to form tag located in tracking-expenses page to select the sheet
+const formSelectSheetTrackingExpenses = document.getElementById('form-for-selecting-sheet');
+
+selectSheetTrackingExpenses.addEventListener('change', () => {
+   formSelectSheetTrackingExpenses.submit();
+});

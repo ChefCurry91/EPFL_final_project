@@ -12,10 +12,17 @@ import datetime
 # retrieving the user home directory
 # https://www.tutorialspoint.com/How-to-find-the-real-user-home-directory-using-Python
 desktop_path = os.path.join(os.path.expanduser('~'), 'Desktop')
-file = 'expenses_data.txt'
 
-my_file_handler= FileHandler(desktop_path,file)
-my_file_handler.create_excel_sheet() 
+file = 'expenses_data.txt'
+file_names = 'file_names.txt'
+
+my_file_handler= FileHandler(desktop_path,file,file_names)
+
+#my_file_handler= FileHandler(desktop_path,file_names)
+
+
+my_file_handler.create_excel_file()
+
 
 
 
@@ -31,27 +38,60 @@ def get_html(page_name):
     return content
 
 
-@app.route('/')
+@app.route('/', methods = ['POST', 'GET'])
 def index_page():
     page = get_html('index')
+
+    sheet_name = request.form.get('sheet-name')
+    print(sheet_name)
+    if request.method == 'POST':
+        my_file_handler.create_excel_sheet(sheet_name)
+        my_file_handler.create_txt_file(sheet_name)
+
+
     return page
 
 @app.route('/posting-expenses', methods = ['POST', 'GET'])
 def post_expenses():
     page = get_html('posting-expenses')
 
+
+    # Get name of file names corresponding to sheet created in excel file 
+    # Each name is recorded in text file "file_names.txt"
+    file_names_array= my_file_handler.get_file_names_()
+    print(file_names_array)
+    
+    # Create a Select Tag with all the sheet name contained in excel file
+    
+    actual_values='<div id="div-excel-sheet"><label>Excel Sheet</label> <select id = "list-excel-sheet" name="sheet-name"> <option> ---Choose Excell Sheet--- </option> ' 
+    
+
+    for file_name in file_names_array:
+        excel_sheet_name = file_name[:-4]
+        actual_values+= f'<option value={excel_sheet_name}>{excel_sheet_name}</option>'
+
+    actual_values+= '</select> </div>'
+        
+
+
+
     # Retrieving HTML Form data using Flask
     # https://www.geeksforgeeks.org/retrieving-html-from-data-using-flask/
 
+    
     amount = request.form.get('amount')
     expense= request.form.get('expense')
     date= request.form.get('date')
     currency_payment = request.form.get('currency-payment')
+    excel_sheet_name_selected = request.form.get('sheet-name')
     
+
     
 
     if request.method == 'POST':
         #amount= round(float(amount), 2)
+
+        txt_file_name= excel_sheet_name_selected + '.txt'
 
         try:
             amount= round(float(amount), 2)
@@ -83,28 +123,42 @@ def post_expenses():
             'amount_CHF':converted_amount
         }
 
-        # Add input to txt file
-        my_file_handler.add_data_to_txt_file(dict_expense, file)
-        # Get input from txt file as two dimensional array
-        array_expenses = my_file_handler.get_data_added_to_txt_file()
+        
+       
+        # Add input to selected text file
+        #my_file_handler.add_data_to_txt_file(dict_expense, file)
+        
+        #my_file_handler.add_data_to_txt_file(dict_expense, txt_file_name)
+
+        # Store in variable "file_excel_sheet_selected" the name of the txt file corresponding 
+        # to the excel sheet selected in Form
+        file_excel_sheet_selected = my_file_handler.add_data_to_txt_file(dict_expense, txt_file_name)
+        
+
+      
+        # Get data stored in txt file which corresponds to the "file_excel_sheet_select" 
+        # The data we get are return as a two dimensional array
+        array_expenses = my_file_handler.get_data_added_to_txt_file(file_excel_sheet_selected)
+        
         # Count the number of row for the two dimensional array
         number_of_rows = len(array_expenses)
        
        
-        # Only if the two dimensional array "array_expenses" as one single row
+        # Only if the two dimensional array "array_expenses" has one single row
         # call function create_excel_sheet() 
 
-        if number_of_rows == 1:
-            my_file_handler.create_excel_sheet()
-            my_file_handler.add_data_to_excel_sheet(dict_expense)
+        #if number_of_rows == 1:
+        #    my_file_handler.create_excel_file()
+        #    my_file_handler.add_data_to_excel_sheet(dict_expense, excel_sheet_name_selected)
 
         # if two dimensional array "array_expenses" has more than one row
         # do not call function create_excel_sheet 
-        else:
-            my_file_handler.add_data_to_excel_sheet(dict_expense)
+        #else:
+        my_file_handler.add_data_to_excel_sheet(dict_expense, excel_sheet_name_selected)
 
        
-    return page
+
+    return page.replace('<p>Select Excel Sheet</p>',actual_values)
 
 
 
@@ -112,11 +166,40 @@ def post_expenses():
 def track_expenses():
     page= get_html('tracking-expenses')
 
-    if request.method == 'POST':
-        my_file_handler.clear_all_data_txt_file()
-        my_file_handler.clear_all_data_excel_sheet()
+    # Get name of file names corresponding to sheet created in excel file 
+    # Each name is recorded in text file "file_names.txt"
+    file_names_array= my_file_handler.get_file_names_()
 
-    array_expenses = my_file_handler.get_data_added_to_txt_file()
+
+    # Create a Select Tag with all the sheet name contained in excel file
+    
+    current_values='<div id="div-excel-sheet-dropdown"><select id = "dropdown-excel-sheets-tracking-expenses" name="sheet-name-tracking"> <option> ---Select Your Excel Sheet--- </option> ' 
+    
+    # Loop through file_names_array in order to get each Sheet name
+    # To add to the select tag as option
+
+    for file_name in file_names_array:
+        excel_sheet_name = file_name[:-4]
+        current_values+= f'<option value="{excel_sheet_name}">{excel_sheet_name}</option>'
+
+    current_values+= '</select> <input id="submit-button-excel-sheet-tracking" type="submit" value="Submit"> </div>'
+
+    # When initializing “file_excel_sheet_selected", we make sure that when landing on
+    # "tracking-expenses" page function get_data_added_to_text_file has an input 
+    # and the page does not crash
+
+    file_excel_sheet_selected = 'Sheet.txt'
+    array_expenses = my_file_handler.get_data_added_to_txt_file(file_excel_sheet_selected)
+
+    # Select the Sheet we want to display the tracking
+    excel_sheet_name_selected = request.form.get('sheet-name-tracking')
+    if request.method == 'POST':
+        #my_file_handler.clear_all_data_txt_file()
+        #my_file_handler.clear_all_data_excel_sheet()
+        print(excel_sheet_name_selected)
+
+        txt_file_name= excel_sheet_name_selected + '.txt'
+        array_expenses = my_file_handler.get_data_added_to_txt_file(txt_file_name)
     
     actual_values=''
 
@@ -206,9 +289,6 @@ def track_expenses():
     print('Sum total expenses in CHF:', aggregate_expense_in_CHF)
 
     
-    return page.replace('<p>Track expenses</p>',actual_values)
-
-
-
+    return page.replace('<p>Track expenses</p>',actual_values).replace('<p>Select Excel Sheet</p>', current_values)
 
 

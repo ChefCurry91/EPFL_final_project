@@ -84,9 +84,6 @@ li {
     font-style: italic;
     filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
 
-
-
-
 }
 
 /* Slogan "Your Trusted Partner in Financial Management!" */
@@ -112,26 +109,145 @@ li {
     letter-spacing: 1.2px;
     font-weight: bolder;
     filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
-
-
-    
+ 
 }
 
-#last-paragrap-index-page {
-    text-align:justify;
-    margin-top: 2em;
-    margin-left: 1.5em;
-    width: 86%;
-    line-height: 1.2;
-    font-size: 18px;
-    color: #984063;
-    letter-spacing: 1.2px;
+
+/* Corresponds to button "Create-New Excel Sheet"  */
+
+#create-new-excel-sheet {
+    border-radius: 7px;
+    padding: 1em .66em;
+    margin-top: 1em;
+    font-size: 15px;
+    letter-spacing: 1.6px;
+    cursor: pointer;
+    text-align: center;
     font-weight: bolder;
-    filter: drop-shadow(12px 12px 5px rgba(0, 0, 0, 0.2));
+    outline: none; /* Remove outline */
+    box-shadow: none; /* Remove box shadow */
+    border:none; /* Remove border */
+    background: #98BF64;
+    color: #FFF;
+    transition: background 0.4s ease, color 0.4s ease; 
+    filter: drop-shadow(12px 12px 5px rgba(152, 191, 100, 0.2));
+    box-shadow: rgba(152, 191, 100, 0.12) 0px 1px 3px, rgba(152, 191, 100, 0.24) 0px 1px 2px;
+    width: 250px;
+    margin-left: 1.5em;
+}
 
 
+
+#create-new-excel-sheet:hover {
+    background:#FFF;
+    color:#41436A;
 
 }
+
+/* Modal Index Page when clicking button Create New Excel Sheet */
+
+#modal-index-page{
+    display:none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+
+}
+
+/* Modal content for index page when clicking button Create New Excel Shee */
+
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 25em auto; /* 15% from the top and centered */
+    padding: 2.5em;
+    border-radius: 12px;
+    width: 400px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+}
+
+/* Sentence Enter sheet name */
+
+#label-modal {
+    color:#41436A;
+    font-size: 18px;
+    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
+
+}
+
+/* Input box to enter sheet name */
+
+#input-sheet-name {
+    filter: drop-shadow(12px 12px 20px rgba(152, 64, 99, 0.2));
+    border-radius: 7px;
+    font-size: 15px;
+    letter-spacing: 1.6px;
+    padding: .42em;
+    cursor: pointer;
+    font-weight: bolder;
+    outline: none; /* Remove outline */
+    box-shadow: none; /* Remove box shadow */
+    border:none; /* Remove border */
+    margin-right: 1em;
+    margin-top: 1.25em;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+
+}
+
+/* Cross to close modal */
+
+.close-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    align-self: flex-end;
+  }
+
+.close-modal:hover,
+.close-modal:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Submit button for sheet name */
+
+#submit-new-name-sheet {
+    border-radius: 7px;
+    font-size: 15px;
+    letter-spacing: 1.6px;
+    padding: .66em .66em;
+    width: 125px;
+    cursor: pointer;
+    font-weight: bolder;
+    outline: none; /* Remove outline */
+    box-shadow: none; /* Remove box shadow */
+    border:none; /* Remove border */
+    margin-right: 1em;
+    margin-top: 1.25em;
+    background: #984063;
+    color: #FFF;
+    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
+  
+}
+
+#submit-new-name-sheet:hover,
+#submit-new-name-sheet:focus {
+  text-decoration: none;
+  cursor: pointer;
+  
+}
+
 
 /* corresponds to imported "spreadsheet.svg" */
 
@@ -141,7 +257,6 @@ li {
     margin: 6em auto;
     filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
 
-   
 }
 
 
@@ -193,13 +308,13 @@ label {
 }
 
 
-#div-input-expenses, #div-currency-to-post, #div-amount-to-post, #div-input-date-to-post  {
+#div-input-expenses, #div-currency-to-post, #div-amount-to-post, #div-input-date-to-post, #div-excel-sheet  {
     display:flex;
     flex-direction: column;
    
 }
 
-#date-to-post, #post-button, #amount-to-post, #list-currency, #expense-to-post {
+#date-to-post, #post-button, #amount-to-post, #list-currency, #expense-to-post, #list-excel-sheet {
     border-radius: 7px;
     padding: 1em .66em;
     margin-top: 1em;
@@ -212,16 +327,21 @@ label {
     box-shadow: none; /* Remove box shadow */
     border:none; /* Remove border */
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    
 }
 
-#div-input-expenses{
+#div-excel-sheet{
     grid-row: 2; /* spans the first row */
+    grid-column: 0 / 2; /* Spans from column 2 to column 3 */
+}
+
+
+#div-input-expenses{
+    grid-row: 3; /* spans the first row */
     grid-column: 0 / 2; /* Spans from column 2 to column 3 */
 
 
 }
-
-
 
 #expense-to-post{
     width: 250px;
@@ -230,19 +350,18 @@ label {
 }    
 
 #div-currency-to-post{
-    grid-row:3;
+    grid-row:4;
     grid-column:0/2;
 }
 
-#list-currency{
+#list-currency, #list-excel-sheet {
     width: 300px;
     text-align: center; /* Item 2 starts at column 1 */
-
 
 }
 
 #div-amount-to-post {
-    grid-row: 4;
+    grid-row: 5;
     grid-column: 0/2; /* Item 3 continues at column 2 */
 }
 
@@ -251,7 +370,7 @@ label {
 }
 
 #div-input-date-to-post {
-    grid-row: 5;
+    grid-row: 6;
     grid-column: 0/2;
 }
 
@@ -260,7 +379,7 @@ label {
 }
 
 #post-button {
-    grid-row: 6; /* Item 5 spans the last row */
+    grid-row: 7; /* Item 5 spans the last row */
     grid-column: 0/1; /* Spans from column 2 to column 3 */
     margin-left: auto;
     background: #984063;
@@ -279,10 +398,6 @@ label {
 #message-img-posting-expenses {
     display:none
 }
-
-
-
-
 
 
 .tableau-recording-expenses {
@@ -306,18 +421,65 @@ label {
 
 }
 
-/* Title BudgetBuddy... */
 
 
 #title-tracking-expenses-page {
     margin: 3em auto 2em auto;
-    width: 450px;
-    font-size: 18px;
+    width: 470px;
+    font-size: 20px;
     font-style: italic;
     color:#984063;
     filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
 
 }
+
+#div-excel-sheet-dropdown {
+    width: 425px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto 3.25em auto;
+}
+
+#dropdown-excel-sheets-tracking-expenses {
+    display: inline-block;
+    width: 275px;
+    border-radius: 7px;
+    padding: 1em .66em;
+    font-size: 12px;
+    letter-spacing: 1.6px;
+    margin-top: 1em;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bolder;
+    outline: none; /* Remove outline */
+    box-shadow: none; /* Remove box shadow */
+    border:none; /* Remove border */
+    background-color: #984063;
+    color:#FFF;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
+
+}
+
+#submit-button-excel-sheet-tracking {
+    width:100px;
+    padding: 1em .66em;
+    margin-top: 3em;
+    font-size: 12px;
+    letter-spacing: 1.6px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bolder;
+    outline: none; /* Remove outline */
+    box-shadow: none; /* Remove box shadow */
+    border:none; /* Remove border */
+    border-radius: 7px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
+
+}
+
 
 /* container wrapping all the row representing an expense, it includes the label */
 
@@ -358,13 +520,6 @@ label {
     /*text-decoration: underline 2px #984063; */
     font-weight: bolder;
     filter: drop-shadow(12px 12px 20px rgba(152, 64, 99, 0.2));
-
-
-    
-    
-
-
-  
 }
 
 /* IDs value represent each value present on the first row*/
@@ -394,9 +549,6 @@ label {
     margin-left:.3em;
     transition: box-shadow 0.3s ease-in-out;
     font-size: 15px;
-
-   
-
 
 }
 
@@ -509,15 +661,14 @@ label {
 
 #clear-all-button {
     display: block;
-    background: #984063;
-    color: #FFF;
-    transition: background 0.4s ease, color 0.4s ease; 
+    background-color: #984063;
+    color:#FFF;
     width: 175px;
     filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
     cursor:pointer;
     border-radius: 7px;
     padding: 1em .66em;
-    margin: 2.5em 1em 1.5em auto;
+    margin: 2.75em 1em 1.75em auto;
     font-size: 15px;
     letter-spacing: 1.6px;
     cursor: pointer;
@@ -542,20 +693,32 @@ label {
 
 @media (min-width: 750px) {
 
+    /******* INDEX PAGE ********/
+
+    #modal-content {
+        width: 800px;
+    }
+
+    #input-sheet-name {
+        margin-top: 2em;
+    }
+
+    #submit-new-name-sheet {
+        margin-top:2em;
+    }
+
     /******* TRACKING EXPENSES ********/
 
     #title-tracking-expenses-page {
         font-size: 22px;
         width: 525px;
-        margin-left: 1.5em;
-        margin-right: 0;
         
     }
 
 
-
     .container-only-for-track-expenses {
         margin: 0 0 0 1.25em;
+        margin: 0 auto 0 auto;
         width: 725px;
 
         
@@ -570,16 +733,18 @@ label {
     }
 
     #get-you-cover-message{
-        text-align: start;
-        margin-left: 1em;
+        text-align: center;
+      /*  margin-left: 1em; */
     }
 
     .container-aggregate-expenses {
         width: 525px;
+        margin: 0 auto 0 auto;
+    /*    margin-left: .5em;*/
     }
 
     #clear-all-button {
-        margin: 3em auto 2em .25em;
+        margin: 3em auto 2em .5em;
     }
 
 
@@ -638,13 +803,6 @@ label {
     
     }
 
-    /*#slogan-index-page{
-        border-right: 3px dotted #984063;
-        border-bottom: 1px dashed #984063;
-        border-radius: 10px;
-        padding: 0 .5em .2em 0;
-    } */
-
 
     .introductory-paragrap-index-page {
         max-width: 990px;
@@ -677,17 +835,17 @@ label {
 
     /********* Tracking EXPENSES PAGE ************* */
 
-    #get-you-cover-message{
-        text-align: center;
-        margin-left: 0;
+    
+    
+    #dropdown-excel-sheets-tracking-expenses {
+        margin-top: 2em;
     }
- 
+    #submit-button-excel-sheet-tracking{
+        margin-bottom: 2em;
+    } 
 
     .container-only-for-track-expenses {
-       /* margin: 0 0 1em 1.5em; */
         width: 725px;
-        margin: 0 auto 1em auto;
-        
     }
 
     .container-aggregate-expenses {
@@ -698,6 +856,7 @@ label {
     #clear-all-button {
         margin: 3em 7em 2em auto;
     }
+
 
     
 
@@ -736,7 +895,6 @@ label {
     #img-posting-expenses-page{
         width: 80%;
         filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
-
     }
 }
 
@@ -745,14 +903,11 @@ label {
     #message-img-we-get-you-cover{
         display:block;
         position: absolute;
-        right: 8em;
-        bottom: -12em;
         filter: drop-shadow(12px 12px 2px rgba(152, 64, 99, 0.2));
         padding: 3em;
-        border-radius: 12%;
         width: 40%;
         right: 2em;
-        bottom: -12em;
+        bottom: -18em;
     }
 
     #get-you-cover-message {
@@ -768,11 +923,9 @@ label {
         width: 90%;
         display: unset
         
-        
     }
 
     .container-only-for-track-expenses {
-        /* margin: 0 0 1em 1.5em; */
          width: 725px;
          margin: 0 auto 1em auto;
          margin: 0 0 1em 3em;
@@ -781,13 +934,13 @@ label {
  
      .container-aggregate-expenses {
          box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, #11111a1a 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
-         margin: 10em auto 4em 3em;
+         margin: 8em auto 3em 0em;
         /*https://htmlcssfreebies.com/css-box-shadow-examples/ */
          box-shadow: 0px 9px 30px rgba(152, 64, 99, 0.1);
      }
 
      #clear-all-button {
-        margin: 3em auto 2em 3.5em;
+        margin: 3em 0 2em 0em;
     }
 
 }

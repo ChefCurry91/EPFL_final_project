@@ -21,8 +21,13 @@
 
         
         <form  id="form-for-posting-expenses" action = '/posting-expenses' method="post"> 
+
+
+            <p>Select Excel Sheet</p>
             
             <h3 id="title-form-posting-expenses">Post Your Expenses</h3>
+
+            
             
             
             <div id="div-input-expenses">
@@ -47,39 +52,37 @@
                     <option value="USD"> USD $ </option>
                 </select>
 
-        </div>
+            </div>
 
             
-        <div id="div-amount-to-post">
+            <div id="div-amount-to-post">
 
-            <label>Amount Details</label>
-            <input 
-                type="text"
-                placeholder="Enter Amount"
-                name="amount"
-                id="amount-to-post"
-                >
+                <label>Amount Details</label>
+                <input 
+                    type="text"
+                    placeholder="Enter Amount"
+                    name="amount"
+                    id="amount-to-post"
+                    >
         
-        </div>
+            </div>
 
 
-        <div id="div-input-date-to-post">
+            <div id="div-input-date-to-post">
 
-            
-            <label>Date Details</label>
+                <label>Date Details</label>
 
-            <input
-                
-                type="date"
-                placeholder="Enter Date of Payment"
-                name="date"
-                id="date-to-post"
-                >
-        </div>
+                <input
+                    type="date"
+                    placeholder="Enter Date of Payment"
+                    name="date"
+                    id="date-to-post"
+                    >
+            </div>
 
             <button id="post-button" type="submit">Post It</button>
 
-            </form>
+        </form>
 
         <div id="message-img-posting-expenses">
             <p id="message-posting-expenses-page">... Leave The Math To Us. We'll Keep Track Of Your Spending For You</p>

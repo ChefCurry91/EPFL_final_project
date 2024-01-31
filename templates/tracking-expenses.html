@@ -18,23 +18,20 @@
         </nav>
 
         <h2 id="title-tracking-expenses-page">BudgetBuddy Helps You Keep Track of Your Expenses!</h2>
+
+        <form  id="form-for-selecting-sheet" action ="/tracking-expenses" method="post"> 
+            <p>Select Excel Sheet</p>
+        </form>
+            
         
         <div class="container-only-for-track-expenses">
             <p>Track expenses</p>
 
-            <form action = '/tracking-expenses' method="post">
+            <form action = '/tracking-expenses' method="">
                 <button id="clear-all-button" type="submit">Clear All</button>
             </form>
 
         </div>
-
-
-       
-
-    
-
-        
-
 
     </div>
     <script src="../static/script.js"></script>
