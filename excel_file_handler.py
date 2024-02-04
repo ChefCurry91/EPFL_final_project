@@ -9,8 +9,9 @@ from data_title_column_excel import dict_data_title_column
 class FileHandler():
 
     #Initialize the path where the Excel file will be stored
-    def __init__(self, path,file_name,file_names):
+    def __init__(self, path,excel_file,file_name,file_names):
         self.path = path
+        self.excel_file = excel_file
         self.file_name = file_name
         self.file_names = file_names
 
@@ -45,41 +46,47 @@ class FileHandler():
             sheet[letter +'1'].font=bold_font_italic_16
             sheet.column_dimensions[letter].width =  35
             
-        file_name = 'expenses.xlsx'
+       
 
         # Joining Paths with os.path.join
         # https://ioflood.com/blog/python-os-path/#:~:text=In%20this%20example%2C%20we're,to%20a%20user's%20documents%20directory.
-        file_path = os.path.join(self.path, self.file_name)
+        file_path = os.path.join(self.path, self.excel_file)
 
-        # save operation applied to excell workbook
+        # Save operation applied to the Excel workbook
         wb.save(file_path)
         wb.close()
 
-    
+        # From here, we add the name of the first Excel sheet created in the Excel file
+        # to the .txt file containing all the names corresponding to created Excel sheets
         file_containing_file_names = os.path.basename(self.file_names)
 
         # Get the full path to the file
         full_file_path = os.path.join(os.getcwd(), file_containing_file_names)
-        print(full_file_path)
 
         # Check if a text file is not empty, 
-        # ensuring that no line break is added if the file contains no content
+        # Ensuring that no line break is added if the file contains no content
         # https://pythonhow.com/how/check-if-a-text-file-is-empty/#:~:text=getsize('nodata.,would%20output%20File%20is%20empty.
         
   
-
         if os.path.getsize(full_file_path) == 0:
             file_names = open(self.file_names,'a')
             file_names.write('Sheet.txt' + ' ')
             file_names.close()
+        
+        # Additionally, we create our first .txt file corresponding to the newly created Excel sheet
+        # The first Excel sheet created is always named "Sheet"
+        first_existing_text_file= 'Sheet.txt'
+        my_new_file = open(first_existing_text_file, 'a')
+        my_new_file.close()
+        
+
         
         return file_path
     
     def create_excel_sheet(self,new_sheet_name):
         wb = Workbook()
 
-        file_name = 'expenses.xlsx'
-        file_path = os.path.join(self.path, file_name)
+        file_path = os.path.join(self.path, self.excel_file)
 
         # For excel sheet manipulation, I relied on the following source:
         # Automate the Boring Stuff with Python: Practical Programming for Total Beginners by AI Sweighart
@@ -115,22 +122,17 @@ class FileHandler():
         
         wb.save(file_path)
         wb.close()
+            
 
-        
-        print('excel sheet created')
-        #print(number_of_sheets)
-    
+    def create_txt_file(self,sheet_name):
 
-    def create_txt_file(self,file_name):
-
-        # Create a new txt file corresponding to a new excel sheet
-        new_file_name= file_name + '.txt'
+        # Create a new .txt file corresponding to a new Excel sheet created
+        new_file_name= sheet_name + '.txt'
         my_new_file = open(new_file_name, 'a')
         my_new_file.close()
         
-        # Add to "file_names", the names a the new file created
-        # Aim is to store the names of the text files corresponding
-        # to the excel sheet in one file
+        # Add the names of the newly created text files to the "file_names" list
+        # The goal is to store the names of text files corresponding to the Excel sheet in a single file
 
         file_names = open(self.file_names,'a')
         file_names.write(new_file_name + " ")
@@ -138,6 +140,10 @@ class FileHandler():
 
 
     def get_file_names_(self):
+
+        # Retrieve names stored in the "file_names.txt" file
+        # The goal is to use these names for displaying options on the "posting-expenses" page.
+        # This enables the user to choose the Excel sheet for posting expenses and to display any sheet on the "tracking-expenses" page.
         file_names= open(self.file_names)
         content = file_names.read()
         file_names.close()
@@ -145,7 +151,7 @@ class FileHandler():
         
         array_file_names = content.split(' ')
 
-        # remove white space from array
+        # Remove white spaces from the array
         temp_array_file_names = array_file_names.pop()
         return array_file_names
     
@@ -196,7 +202,7 @@ class FileHandler():
         
         
         file_name = 'expenses.xlsx'
-        file_path = os.path.join(self.path, file_name)
+        file_path = os.path.join(self.path,file_name)
         
 
         # For excel sheet manipulation, I relied on the following source:
@@ -307,7 +313,6 @@ class FileHandler():
             return 
         
     def add_data_to_txt_file(self,data_expense,file_name):
-        #my_file = open(self.file_name, 'a')
         my_file = open(file_name, 'a')
 
         # To check if a file is empty using os.path.getsize, we need to provide the file name
@@ -329,7 +334,10 @@ class FileHandler():
             
         # https://realpython.com/iterate-through-dictionary-python/
 
-
+       # data_expense corresponds to the dictionary variable dict_expense where all the inputs entered in the form are stored.
+       # We loop through it to extract only the values and add them to the .txt file corresponding to the Excel sheet.
+       # The values are stored as strings for convenience.
+            
             for key, value in data_expense.items():
                value_stringified= str(value) + ' '
                content_file = value_stringified
@@ -347,18 +355,18 @@ class FileHandler():
         return file_name
 
 
-    def get_data_added_to_txt_file(self,file_excel_sheet_selected):
-        #my_file= open(self.file_name)
+    def get_data_added_to_txt_file(self,txt_file_from_excel_sheet_selected):
         
-        my_file = open(file_excel_sheet_selected)
+        # Retrieve data from the .txt file corresponding to "file_excel_sheet_select"
+        # The obtained data is returned as a two-dimensional array
+        my_file = open(txt_file_from_excel_sheet_selected)
         content = my_file.read()
         my_file.close()
         array_expenses = content.split('\n')
         
-        #print(array_expenses)
-        #return array_expenses
+    
         
-        
+        # We create and return the two-dimensional array as follows:
         
         two_dimensional_array_expenses = []
         for i in array_expenses:
@@ -371,15 +379,14 @@ class FileHandler():
     def clear_all_data_txt_file(self):
         my_file_to_delete = open(self.file_name,'w')
         my_file_to_delete.close()
-
     
-    def clear_all_data_excel_sheet(self):
+    def clear_all_data(self,txt_file_from_excel_sheet_selected,excel_sheet_selected):
+        my_file_to_delete = open(txt_file_from_excel_sheet_selected,'w')
+        my_file_to_delete.close
 
         # Joining Paths with os.path.join
         # https://ioflood.com/blog/python-os-path/#:~:text=In%20this%20example%2C%20we're,to%20a%20user's%20documents%20directory.
-        
-        file_name = 'expenses.xlsx'
-        file_path = os.path.join(self.path, file_name)
+        file_path = os.path.join(self.path, self.excel_file)
 
         # For excel sheet manipulation, I relied on the following source:
         # Automate the Boring Stuff with Python: Practical Programming for Total Beginners by AI Sweighart
@@ -387,10 +394,90 @@ class FileHandler():
 
         # Opening Excel Documents with OpenPyXL
         wb = load_workbook(file_path)
-        
-        sheet = wb['Sheet']
 
-        sheet.delete_rows(1,sheet.max_row)
+        # Store the name of the selected sheet in the variable "active_sheet"
+        active_sheet = wb[excel_sheet_selected]
+
+        # If the selected sheet's name is "Sheet," delete all rows except the first one.
+        # Ensuring that at least one sheet exists is the object
+        active_sheet.delete_rows(2, active_sheet.max_row)
+
+
+        wb.save(file_path)
+
+
+    
+    def delete_files(self,txt_file_from_excel_sheet_selected,excel_sheet_selected):
+
+        # Joining Paths with os.path.join
+        # https://ioflood.com/blog/python-os-path/#:~:text=In%20this%20example%2C%20we're,to%20a%20user's%20documents%20directory.
+        
+        file_path = os.path.join(self.path, self.excel_file)
+
+        # For excel sheet manipulation, I relied on the following source:
+        # Automate the Boring Stuff with Python: Practical Programming for Total Beginners by AI Sweighart
+        # https://automatetheboringstuff.com/2e/chapter13/
+
+        
+        # Opening Excel Documents with OpenPyXL
+        wb = load_workbook(file_path)
+
+        # Store the name of the selected sheet in the variable "active_sheet"
+        active_sheet = wb[excel_sheet_selected]
+        
+        # If the selected sheet's name is "Sheet," delete all rows except the first one.
+        # Ensuring that at least one sheet exists is the object
+
+        if active_sheet.title == 'Sheet':
+            return
+            active_sheet.delete_rows(2, active_sheet.max_row)
+
+            # Retrieve names stored in the "file_names.txt" file.
+            # The objective is to create an array that serves as the basis for a new array,
+            # excluding the name of the file to be deleted.
+            file_names= open(self.file_names)
+            content = file_names.read()
+            file_names.close()
+        
+        
+            array_file_names = content.split(' ')
+
+            return array_file_names
+
+        # If the selected sheet's name is not "Sheet," delete the corresponding text file and 
+        # the sheet in the Excel file.
+
+        elif active_sheet.title != 'Sheet':
+            # delete the file
+            os.remove(txt_file_from_excel_sheet_selected)
+
+            # Retrieve names stored in the "file_names.txt" file.
+            # The objective is to create an array that serves as the basis for a new array,
+            # excluding the name of the file to be deleted.
+            file_names= open(self.file_names)
+            content = file_names.read()
+            file_names.close()
+        
+        
+            array_file_names = content.split(' ')
+
+            # Iterate through the array, appending only elements that do 
+            # not correspond to the file to be deleted to a new array.
+
+            temp = []
+            for file_name in array_file_names:
+                if file_name != txt_file_from_excel_sheet_selected:
+                    print(file_name)
+                    temp.append(file_name)
+            
+
+            # Finally, the text file "file_names_file" is updated with the elements of the newly created array.
+            file_names_file = open(self.file_names, 'w')
+            file_names_file.write(' '.join(temp))
+            file_names_file.close()
+
+            return temp
+                
         wb.save(file_path)
         
         

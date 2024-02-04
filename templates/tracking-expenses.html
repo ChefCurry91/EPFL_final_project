@@ -19,7 +19,7 @@
 
         <h2 id="title-tracking-expenses-page">BudgetBuddy Helps You Keep Track of Your Expenses!</h2>
 
-        <form  id="form-for-selecting-sheet" action ="/tracking-expenses" method="post"> 
+        <form  id="form-for-selecting-sheet" action ="/tracking-expenses" method="post" name = 'show-expenses'> 
             <p>Select Excel Sheet</p>
         </form>
             
@@ -27,9 +27,11 @@
         <div class="container-only-for-track-expenses">
             <p>Track expenses</p>
 
-            <form action = '/tracking-expenses' method="">
-                <button id="clear-all-button" type="submit">Clear All</button>
-            </form>
+            
+       <!---      <form action = '/tracking-expenses' method="post">
+                <input type="submit" name="clear-all-inputs" value="clear-all">
+                <button id="clear-all-button" type="submit">Clear All</button> 
+            </form>--->
 
         </div>
 
