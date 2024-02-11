@@ -1,8 +1,20 @@
+{/* variable related to input of type button, "Show Expenses" */}
+
 const showExpensesButton = document.getElementById('submit-button-excel-sheet-tracking');
-const clearAllData = document.getElementById('submit-button-clear-inputs')
+
+{/* variable related to input of type button, "Clear All Data" */}
+
+const clearAllData = document.getElementById('submit-button-clear-inputs');
+
+{/* variable related to input of type button, "Clear Sheet" */}
+
 const deleteFileButton = document.getElementById('submit-button-delete-file');
 
-const form = document.getElementById('form-for-selecting-sheet')
+{/* variable related to Form element, */}
+
+const form = document.getElementById('form-for-selecting-sheet');
+
+{/* /* Function aimed at preventing the selection of no sheet, which could cause an internal error. */ }
 
 const preventFalseValue = (event) => {
    let clearAllInputs = document.getElementById('dropdown-excel-sheets-tracking-expenses').value;

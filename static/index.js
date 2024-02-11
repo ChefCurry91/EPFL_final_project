@@ -1,3 +1,9 @@
+
+// In order to create the modal, I relied on the following source:
+
+// https://www.w3schools.com/howto/howto_css_modals.asp
+
+
 // Get the modal
 const modal = document.getElementById("modal-index-page");
 
@@ -25,6 +31,10 @@ window.onclick = (event) => {
    }
  } 
 
+
+ // Functionality related to local storage
+
+
  // Variable related to the input box where the name is entered"
 const userNameToAdd = document.getElementById('username-to-add');
 // Variable related to the button used to submit the entered name
@@ -38,9 +48,10 @@ const contentToEnterUserName = document.getElementById('container-welcome-userna
 
 
 {/* Function aiming:
-      To add Welcome username on front-end
-      Remove  message, inputbox and button where username is enterred and submitted
-      Storing value of key-value pair username: name in local storage */}
+
+      - To add Welcome username on front-end
+      - Remove  message, inputbox and button where username is enterred and submitted
+      - Storing value of key-value pair username: name in local storage */}
   
 const addUserName = () => {
 
@@ -53,22 +64,23 @@ const addUserName = () => {
   // Setting up key-value pair in local storage 
   localStorage.setItem('username', userNameToAdd.value);
              
-  // clearing inputbox after submitting username 
+  // Clearing inputbox after submitting username 
   userNameToAdd.value='';
 
   // Remove  message, inputbox and button where username is enterred and submitted */}
-  contentToEnterUserName.remove()
+  contentToEnterUserName.remove();
 }
 
 {/* Function aiming to:
-    Get value from key-value pair stored in local storage
-    Display on Front-end value stored in local storage
-    Remove  message, inputbox and button where username is enterred and submitted */}
+    
+    - Get value from key-value pair stored in local storage
+    - Display on Front-end value stored in local storage
+    - Remove  message, inputbox and button where username is enterred and submitted */}
    
 const getUsernameFromLocalStorage = () => {
     
   // Get value from key-value pair stored in local storage
-  const localStorageValue = localStorage.getItem('username')
+  const localStorageValue = localStorage.getItem('username');
   
   // if value is equal to True, meaning it is stored in local storage, then
   // Display on front end Message Welcome username

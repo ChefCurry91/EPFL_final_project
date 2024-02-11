@@ -1,5 +1,5 @@
 
-{/* variable related to form button "Post It" located in posting-expenses page  */}
+{/* variable related to form button "Post It"  */}
 
 const postButton = document.getElementById('post-button');
 
@@ -22,7 +22,7 @@ const convertDateStringIntoMS = (dateString) => {
 }
 
 
-{/* This function aims to prevent empty or non-numerical values in input boxes within a form, 
+{/* This function aims to prevent empty or non-numerical values in input boxes within the post-expenses form, 
     and also ensures that a date earlier than the current day is selected. */}
 
 const checkValues = (event) => {
@@ -33,7 +33,9 @@ const checkValues = (event) => {
    const date = document.getElementById('date-to-post').value;
    const excel_sheet_selected = document.getElementById('list-excel-sheet').value;
 
-   const datePosted = convertDateStringIntoMS(date)
+   // Date entered in form is converted in milliseconds in order to compare with today current date in milliseconds
+
+   const datePosted = convertDateStringIntoMS(date);
    
 
    // Verify if any field is empty, if a currency payment option is selected, or if an Excel sheet is selected
@@ -41,12 +43,16 @@ const checkValues = (event) => {
          // Prevent form submission
       event.preventDefault();
       alert('Please fill in all required fields.');
+   
+   // Verify that a numerical value is entered
    } else if (isNaN(amount) ) {
-        event.preventDefault();
-        alert('Please enter a valid number for the amount field.');
+      event.preventDefault();
+      alert('Please enter a valid number for the amount field.');
+
+   // Verify that a date earlier than the current day is selected
    } else if (datePosted > today) {
       event.preventDefault();
-      alert('Please enter a date earlier than today.')
+      alert('Please enter a date earlier than today.');
    }
 
 };

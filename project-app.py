@@ -1,7 +1,7 @@
 from flask import Flask, request, session
 import os
 from openpyxl import Workbook,load_workbook
-from excel_file_handler import FileHandler
+from files_handler import FilesHandler
 from data_title_column_excel import dict_data_title_column
 import datetime
 
@@ -18,12 +18,11 @@ file = 'expenses_data.txt'
 file_names = 'file_names.txt'
 excel_file = 'expenses.xlsx'
 
-my_file_handler= FileHandler(desktop_path,excel_file,file,file_names)
-
-#my_file_handler= FileHandler(desktop_path,file_names)
+my_files_handler= FilesHandler(desktop_path,excel_file,file,file_names)
 
 
-my_file_handler.create_excel_file()
+
+my_files_handler.create_excel_file()
 
 
 
@@ -45,10 +44,9 @@ def index_page():
     page = get_html('index')
 
     sheet_name = request.form.get('sheet-name')
-    print(sheet_name)
     if request.method == 'POST':
-        my_file_handler.create_excel_sheet(sheet_name)
-        my_file_handler.create_txt_file(sheet_name)
+        my_files_handler.create_excel_sheet(sheet_name)
+        my_files_handler.create_txt_file(sheet_name)
 
 
     return page
@@ -60,8 +58,7 @@ def post_expenses():
 
     # Retrieve the names of files corresponding to sheets created in the Excel file
     # Each name is recorded in the text file "file_names.txt"
-    file_names_array= my_file_handler.get_file_names_()
-    print(file_names_array)
+    file_names_array= my_files_handler.get_file_names_()
     
     # Create a <select> tag with all the sheet names contained in the Excel file
 
@@ -93,7 +90,7 @@ def post_expenses():
     
 
     if request.method == 'POST':
-        #amount= round(float(amount), 2)
+       
         
         # Add the suffix "txt" to the selected Excel sheet in the form
         # txt_file_name corresponds to a .txt file where the input entered 
@@ -102,11 +99,11 @@ def post_expenses():
 
         try:
             amount= round(float(amount), 2)
-            converted_amount= my_file_handler.get_payment_converted(currency_payment,amount,date)
+            converted_amount= my_files_handler.get_payment_converted(currency_payment,amount,date)
         
         except:
-            amount=100
-            converted_amount= my_file_handler.get_payment_converted(currency_payment,amount,date)
+            amount=0
+            converted_amount= my_files_handler.get_payment_converted(currency_payment,amount,date)
             
 
         # Parse the date string to datetime object
@@ -131,8 +128,8 @@ def post_expenses():
         }
 
        
-        my_file_handler.add_data_to_excel_sheet(dict_expense, excel_sheet_name_selected)
-        my_file_handler.add_data_to_txt_file(dict_expense,txt_file_name)
+        my_files_handler.add_data_to_excel_sheet(dict_expense, excel_sheet_name_selected)
+        my_files_handler.add_data_to_txt_file(dict_expense,txt_file_name)
 
        
 
@@ -146,7 +143,7 @@ def track_expenses():
 
     # Retrieve the names of files corresponding to sheets created in the Excel file
     # Each name is recorded in the text file "file_names.txt""
-    file_names_array= my_file_handler.get_file_names_()
+    file_names_array= my_files_handler.get_file_names_()
 
 
     # Create a <select> tag with all the sheet names contained in the Excel file
@@ -167,7 +164,7 @@ def track_expenses():
     # to prevent the page from crashing
 
     file_excel_sheet_selected = 'Sheet.txt'
-    array_expenses = my_file_handler.get_data_added_to_txt_file(file_excel_sheet_selected)
+    array_expenses = my_files_handler.get_data_added_to_txt_file(file_excel_sheet_selected)
 
     # Select the sheet we want to display for tracking
     excel_sheet_name_selected = request.form.get('sheet-name-tracking')
@@ -180,20 +177,17 @@ def track_expenses():
     if request.method == 'POST':
 
         if clear_all_inputs:
-            print(clear_all_inputs)
             txt_file_name=excel_sheet_name_selected + '.txt'
-            my_file_handler.clear_all_data(txt_file_name,excel_sheet_name_selected)
+            my_files_handler.clear_all_data(txt_file_name,excel_sheet_name_selected)
         
         elif delete_file:
             txt_file_name=excel_sheet_name_selected + '.txt'
-            print(excel_sheet_name_selected)
 
             if excel_sheet_name_selected != 'Sheet':
-                new_file_names_array = my_file_handler.delete_files(txt_file_name,excel_sheet_name_selected)
-                print(new_file_names_array)
+                new_file_names_array = my_files_handler.delete_files(txt_file_name,excel_sheet_name_selected)
             
                 file_path = os.path.join(desktop_path,excel_file)
-                print(file_path)
+
                 # Opening Excel Documents with OpenPyXL
                 wb = load_workbook(file_path)
                 for file_name in new_file_names_array:
@@ -234,7 +228,7 @@ def track_expenses():
 
             # Retrieve data from the .txt file corresponding to "file_excel_sheet_select"
             # The obtained data is returned as a two-dimensional array
-            array_expenses = my_file_handler.get_data_added_to_txt_file(txt_file_name)
+            array_expenses = my_files_handler.get_data_added_to_txt_file(txt_file_name)
     
 
     # From here, each individual expense added to the Excel file and retrieved
@@ -347,7 +341,6 @@ def track_expenses():
     actual_values += f'<div class="aggregate-expenses"><label class="label-agreggate-expenses">Total Payments £:</label> <p class="total-amount-expenses"> {total_amount_in_GBP}</p></div>'
     actual_values += f'<div class="aggregate-expenses"><label class="label-agreggate-expenses">Total Payments $: </label> <p class="total-amount-expenses"> {total_amount_in_USD}</p></div>'
     actual_values += '</div>'
-    print('Sum total expenses in CHF:', aggregate_expense_in_CHF)
 
    
    

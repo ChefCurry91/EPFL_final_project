@@ -6,7 +6,7 @@ import requests
 from data_title_column_excel import dict_data_title_column
 
 
-class FileHandler():
+class FilesHandler():
 
     #Initialize the path where the Excel file will be stored
     def __init__(self, path,excel_file,file_name,file_names):
@@ -200,8 +200,12 @@ class FileHandler():
         # Joining Paths with os.path.join
         # https://ioflood.com/blog/python-os-path/#:~:text=In%20this%20example%2C%20we're,to%20a%20user's%20documents%20directory.
         
+        # After testing, it was observed that when assigning 'file_name = self.excel_file', the application might crashes. 
+        # JS functionanaliy preventFalseValues in "trackig-expenses" does not work. 
+        # Therefore, to prevent this issue, the variable 'file_name' was initialized as 'file_name = 'expenses.xlsx'
         
         file_name = 'expenses.xlsx'
+        #file_name =self.excel_file
         file_path = os.path.join(self.path,file_name)
         
 
@@ -214,7 +218,6 @@ class FileHandler():
         
         #Get the sheet where the data are going to be added
         
-        print(excel_sheet_selected)
         active_sheet = wb[excel_sheet_selected]
         
         #for sheet_name in wb.sheetnames:
@@ -372,7 +375,6 @@ class FileHandler():
         for i in array_expenses:
             x = i.split()
             two_dimensional_array_expenses.append(x)
-            print(two_dimensional_array_expenses)
         return two_dimensional_array_expenses
     
     
@@ -430,19 +432,7 @@ class FileHandler():
 
         if active_sheet.title == 'Sheet':
             return
-            active_sheet.delete_rows(2, active_sheet.max_row)
 
-            # Retrieve names stored in the "file_names.txt" file.
-            # The objective is to create an array that serves as the basis for a new array,
-            # excluding the name of the file to be deleted.
-            file_names= open(self.file_names)
-            content = file_names.read()
-            file_names.close()
-        
-        
-            array_file_names = content.split(' ')
-
-            return array_file_names
 
         # If the selected sheet's name is not "Sheet," delete the corresponding text file and 
         # the sheet in the Excel file.
