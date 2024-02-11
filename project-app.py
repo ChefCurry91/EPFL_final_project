@@ -65,7 +65,7 @@ def post_expenses():
     
     # Create a <select> tag with all the sheet names contained in the Excel file
 
-    actual_values='<div id="div-excel-sheet"><label>Excel Sheet</label> <select id = "list-excel-sheet" name="sheet-name"> <option> ---Choose Excell Sheet--- </option> ' 
+    actual_values='<div id="div-excel-sheet"><label>Excel Sheet</label> <select id = "list-excel-sheet" name="sheet-name"> <option> ---Choose Excel Sheet--- </option> ' 
     
     # Loop through the array file_names_array to retrieve all the sheet names created, 
     # and add each name as a value to the <option> tag
@@ -151,7 +151,7 @@ def track_expenses():
 
     # Create a <select> tag with all the sheet names contained in the Excel file
 
-    current_values='<div id="div-excel-sheet-dropdown"><select id = "dropdown-excel-sheets-tracking-expenses" name="sheet-name-tracking"> <option> ---Select Your Excel Sheet--- </option> ' 
+    current_values='<div id="div-excel-sheet-dropdown"><select id = "dropdown-excel-sheets-tracking-expenses" name="sheet-name-tracking"> <option> ---Select Your Excel Sheet--- </option>' 
     
     # Loop through the array file_names_array to retrieve all the sheet names created, 
     # and add each name as a value to the <option> tag
@@ -160,7 +160,7 @@ def track_expenses():
         excel_sheet_name = file_name[:-4]
         current_values+= f'<option value="{excel_sheet_name}">{excel_sheet_name}</option>'
 
-    current_values+= '</select> <input id="submit-button-excel-sheet-tracking" type="submit" name = "input-sheet-tracking" value="Show Expenses"> <input type="submit" name="clear-all-inputs" value="Clear Data Sheet Selected"> <input type="submit" name="delete_file" value="Delete Sheet Selected"></div>'
+    current_values+= ' </select> <div id ="container-buttons"> <input id="submit-button-excel-sheet-tracking" type="submit" name = "input-sheet-tracking" value="Show Expenses"> <input id="submit-button-clear-inputs" type="submit" name="clear-all-inputs" value="Clear Data Sheet"> <input id="submit-button-delete-file" type="submit" name="delete_file" value="Delete Sheet"> </div></div>'
 
     # During the initialization of "file_excel_sheet_selected", we ensure that when landing on
     # the "tracking-expenses" page, the function get_data_added_to_text_file has an input
@@ -171,10 +171,7 @@ def track_expenses():
 
     # Select the sheet we want to display for tracking
     excel_sheet_name_selected = request.form.get('sheet-name-tracking')
-   
-    #clear_all_inputs = request.form.get('clear-all-inputs')    
-    
- 
+       
     track_expenses = request.form.get('input-sheet-tracking')
     clear_all_inputs = request.form.get('clear-all-inputs')
     delete_file = request.form.get('delete_file')
@@ -195,7 +192,6 @@ def track_expenses():
                 new_file_names_array = my_file_handler.delete_files(txt_file_name,excel_sheet_name_selected)
                 print(new_file_names_array)
             
-                #print(file_name)
                 file_path = os.path.join(desktop_path,excel_file)
                 print(file_path)
                 # Opening Excel Documents with OpenPyXL
@@ -249,7 +245,7 @@ def track_expenses():
     # Label/Title associated with each respective piece of information
 
     
-    label_list = ['Expense', 'Date', 'Currency','Payment', 'Payment CHF' ]
+    label_list = ['Expense', 'Date', 'Currency','Payment', 'Pay. CHF' ]
     
 
     # Initialize variablew that will be incremented based on past user input
@@ -290,7 +286,7 @@ def track_expenses():
                 # - The currency label
                 # - The variable 'element' that represents the currency used for the payment
 
-                if current_label == 'Payment CHF':
+                if current_label == 'Pay. CHF':
                     aggregate_expense_in_CHF+= round(float(element),2)
                 
 
@@ -323,8 +319,8 @@ def track_expenses():
 
                 actual_values += f'<div class="values"><span>{element}</span></div>'
                 
-                if current_label == 'Payment CHF':
-                    aggregate_expense_in_CHF+=round(float(element),2)
+                if current_label == 'Pay. CHF':
+                    aggregate_expense_in_CHF+= round(float(element),2)
 
                 elif current_label == 'Currency' and element == 'CHF':
                     total_amount_in_CHF+= round(float(inner_array[3]),2)

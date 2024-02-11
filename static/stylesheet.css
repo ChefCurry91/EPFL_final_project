@@ -1,6 +1,4 @@
 
-/* #41436A, #984063, # F64668, #FE9677 */
-/* #5193B3, #62C4C3. #F8D49B, #F8E6CB */
 
 * {
     box-sizing: border-box;
@@ -15,8 +13,6 @@
     padding: 0 0 0 1em;
     background: linear-gradient(to bottom, #FFF, #41436A 300%);
     border:1px dashed transparent;
-
-
 }
 
 
@@ -24,13 +20,12 @@
 
 
 nav {
-    padding: 0.5em 0.2em 0 0.2em;
+    
     padding: 0.5em 1.5em 0 1.5em;
-
 }
 
 
-/* ul located in navbar */
+/* Styles for the unordered list (ul) within the navigation bar (navbar) */
 
 .ul-nav {
     display: flex;
@@ -41,16 +36,14 @@ nav {
     width: 90%;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; /* https://getcssscan.com/css-box-shadow-examples */
 
-
 }
 
-/* li part of ul located in navbar */
+/* li in navbar ul */
 
 li {
     text-decoration: none;
     color: #FFF;
     line-height: 1.8;
-
 }
 
 /* link part of unorder list located in navbar */
@@ -60,9 +53,7 @@ li {
     color: #41436A;
     font-weight: bolder;
     border-bottom: 1px solid transparent;
-    transition: border-color 0.4s ease;
-
-    
+    transition: border-color 0.4s ease; 
 }
 
 
@@ -74,7 +65,100 @@ li {
 
 
 
-/* Title */
+/* Container including the input box, button, and message to enter a username */
+#container-welcome-username {
+    margin: 2.5em 0 1em 1.5em;
+    display: flex;
+    flex-direction: column;
+
+}
+
+/* Welcome message to enter a username */
+#welcome-user-title {
+    font-size: 22px;
+    line-height: 1.6;
+    color:#41436A;
+}
+
+
+/* Container including inputbox and button to enter a username */
+
+
+#div-input-button-username-to-add {
+    display: flex;
+    justify-content: space-between;
+    margin: 1em auto 0 auto;
+    margin: 1em 0 0em 0em;
+    width: 370px;
+    
+} 
+
+/* Inputbox to enter a username */
+
+#username-to-add {
+    display: inline-block;
+    width: 230px;
+    padding: 1em .66em;
+    font-size: 15px;
+    letter-spacing: 1.6px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bolder;
+    outline: none; 
+    box-shadow: none; 
+    border:none; 
+    border-radius: 7px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    transition: background 0.4s ease, color 0.4s ease; 
+    
+} 
+
+/* Button to add a username */
+
+
+#button-add-username {
+    display: inline-block;
+    width: 100px;
+    border-radius: 7px;
+    font-size: 15px;
+    letter-spacing: 1.6px;
+    padding: .66em .66em;
+    cursor: pointer;
+    font-weight: bolder;
+    outline: none; 
+    box-shadow: none; 
+    border:none; 
+    margin-right: 1em;
+    background: #984063;
+    color: #FFF;
+    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
+    transition: background 0.4s ease, color 0.4s ease; 
+} 
+
+
+#button-add-username:hover,
+#button-add-username :focus {
+  text-decoration: none;
+  cursor: pointer;
+  background: #41436A;
+  color:#FFF;
+  filter: none
+
+} 
+
+/* Message added after entering name */
+
+.username-added-message {
+    font-size: 24px;
+    line-height: 1.6;
+    color:#41436A;
+    font-weight: bolder;
+    margin: 2em 0 1em 1.20em;
+    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
+
+}
+
+/* Title: "BudgetBuddy" */
 
 #BudgetBuddy-index-page {
     font-size: 30px;
@@ -92,11 +176,11 @@ li {
     font-size: 20px;
     font-style: italic;
     margin-top:0;
-
 }
 
 
-/* class applied to 3 paragraphs explaing the benefit of App */
+/* Styling for a class applied to three paragraphs explaining the benefits of the app */
+
 
 .introductory-paragrap-index-page {
     text-align:justify;
@@ -109,16 +193,17 @@ li {
     letter-spacing: 1.2px;
     font-weight: bolder;
     filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
- 
 }
 
 
 /* Corresponds to button "Create-New Excel Sheet"  */
 
 #create-new-excel-sheet {
+    width: 250px;
     border-radius: 7px;
     padding: 1em .66em;
     margin-top: 1em;
+    margin-left: 1.5em;
     font-size: 15px;
     letter-spacing: 1.6px;
     cursor: pointer;
@@ -132,21 +217,18 @@ li {
     transition: background 0.4s ease, color 0.4s ease; 
     filter: drop-shadow(12px 12px 5px rgba(152, 191, 100, 0.2));
     box-shadow: rgba(152, 191, 100, 0.12) 0px 1px 3px, rgba(152, 191, 100, 0.24) 0px 1px 2px;
-    width: 250px;
-    margin-left: 1.5em;
 }
 
-
+/* Corresponds to button "Create-New Excel Sheet"  */
 
 #create-new-excel-sheet:hover {
     background:#FFF;
     color:#41436A;
-
 }
 
-/* Modal Index Page when clicking button Create New Excel Sheet */
+/* Modal for "Create New Excel Sheet" button on index page */
 
-#modal-index-page{
+#modal-index-page {
     display:none;
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -156,11 +238,9 @@ li {
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-
 }
 
-/* Modal content for index page when clicking button Create New Excel Shee */
-
+/* Modal content for index page when clicking button Create New Excel Sheet */
 
 .modal-content {
     background-color: #fefefe;
@@ -175,16 +255,15 @@ li {
     align-content: flex-start;
 }
 
-/* Sentence Enter sheet name */
+/* "Enter sheet name" sentence */
 
 #label-modal {
     color:#41436A;
     font-size: 18px;
     filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
-
 }
 
-/* Input box to enter sheet name */
+/* Sheet name input box */
 
 #input-sheet-name {
     filter: drop-shadow(12px 12px 20px rgba(152, 64, 99, 0.2));
@@ -200,10 +279,9 @@ li {
     margin-right: 1em;
     margin-top: 1.25em;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-
 }
 
-/* Cross to close modal */
+/* Close modal cross */
 
 .close-modal {
     color: #aaa;
@@ -220,7 +298,7 @@ li {
   cursor: pointer;
 }
 
-/* Submit button for sheet name */
+/* Sheet name submit button */
 
 #submit-new-name-sheet {
     border-radius: 7px;
@@ -238,31 +316,28 @@ li {
     background: #984063;
     color: #FFF;
     filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
-  
 }
 
 #submit-new-name-sheet:hover,
 #submit-new-name-sheet:focus {
   text-decoration: none;
   cursor: pointer;
-  
 }
 
 
-/* corresponds to imported "spreadsheet.svg" */
+/* Imported image "spreadsheet.svg" */
 
-#img-index-page{
+#img-index-page {
     width: 60%;
     display: block;
     margin: 6em auto;
     filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
-
 }
 
 
 /********* POSTING EXPENSES PAGE ************* */
 
-/* form containing input */
+/* Input form */
 
 #form-for-posting-expenses {
     max-width: 90%;
@@ -277,12 +352,10 @@ li {
     border-radius: 12px;
     color:#41436A;
     background: linear-gradient(124deg, #FFF, #41436A 500%);
-    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
-
-
-   
+    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2))
 }
 
+/* Title: "Post Your Expenses" */
 
 #title-form-posting-expenses {
     grid-row: 1;
@@ -293,10 +366,10 @@ li {
     margin-top: .75em;
     margin-bottom: .5em;
     letter-spacing: 2px;
-    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
-
-    
+    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));   
 }
+
+/* Label for "Excel Sheet" */
 
 label {
     font-size: 21px;
@@ -304,15 +377,16 @@ label {
     font-style: italic;
     letter-spacing: 1.6px;
     line-height: 1.2;
-
 }
 
+/* Form container for labels, inputs, and select tag */
 
 #div-input-expenses, #div-currency-to-post, #div-amount-to-post, #div-input-date-to-post, #div-excel-sheet  {
     display:flex;
-    flex-direction: column;
-   
+    flex-direction: column; 
 }
+
+/* Related to form containing labels, button, and select tag */
 
 #date-to-post, #post-button, #amount-to-post, #list-currency, #expense-to-post, #list-excel-sheet {
     border-radius: 7px;
@@ -326,57 +400,73 @@ label {
     outline: none; /* Remove outline */
     box-shadow: none; /* Remove box shadow */
     border:none; /* Remove border */
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-    
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; 
 }
 
-#div-excel-sheet{
+/* Container including select and option tags, container for selecting Excel sheets when posting expenses. */
+
+
+#div-excel-sheet {
     grid-row: 2; /* spans the first row */
     grid-column: 0 / 2; /* Spans from column 2 to column 3 */
 }
 
+/* Container for "Expenses Details" label and input */
 
 #div-input-expenses{
     grid-row: 3; /* spans the first row */
     grid-column: 0 / 2; /* Spans from column 2 to column 3 */
-
-
 }
+
+/* Input for "Expenses Detail" label */
 
 #expense-to-post{
     width: 250px;
-    width: 19rem;
-        
+    width: 19rem;    
 }    
+
+/* Container for "Details Curreny" label and input */
 
 #div-currency-to-post{
     grid-row:4;
     grid-column:0/2;
 }
 
+/* Select tag for currency options */
+/* Select tag for Excel Sheet options */
+
 #list-currency, #list-excel-sheet {
     width: 300px;
     text-align: center; /* Item 2 starts at column 1 */
-
 }
+
+/* Container for "Amount Details" label and input */
 
 #div-amount-to-post {
     grid-row: 5;
     grid-column: 0/2; /* Item 3 continues at column 2 */
 }
 
+/* Input for "Amount Details" label */
+
 #amount-to-post {
     width: 200px;
 }
+
+/* Container for "Date Details" label and input */
 
 #div-input-date-to-post {
     grid-row: 6;
     grid-column: 0/2;
 }
 
+/* Input for "Date Details" label */
+
 #date-to-post {
     width: 200px;
 }
+
+/* Button to submit data */
 
 #post-button {
     grid-row: 7; /* Item 5 spans the last row */
@@ -387,7 +477,6 @@ label {
     transition: background 0.4s ease, color 0.4s ease; 
     width: 175px;
     filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
-
 }
 
 #post-button:hover{
@@ -395,33 +484,26 @@ label {
     color:#41436A;
 }
 
+/* Message "... Leave the Math to Us" */
+
+
 #message-img-posting-expenses {
     display:none
 }
 
 
-.tableau-recording-expenses {
-    display: flex;
-    flex-direction: row;
-    border: 1px solid black;
-    justify-content: space-around;
-}
-
-
-
 /********* Tracking EXPENSES PAGE ************* */
 
 
-/* wrapper for the entire page */
+/* Expenses tracking page wrapper */
 
 #general-container-tracking {
     padding: .75em;
     background: linear-gradient(to bottom, #FFF, #41436A 300%);
     min-height: 100vh;
-
 }
 
-
+/* Title : BudgetBuddy Helps You Keep Track of Your Expenses! */
 
 #title-tracking-expenses-page {
     margin: 3em auto 2em auto;
@@ -430,16 +512,20 @@ label {
     font-style: italic;
     color:#984063;
     filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
-
 }
 
+
+/*Container containing Select and Option tags for Excel Sheets, along with input fields such as "Show Expenses", etc." */
+
 #div-excel-sheet-dropdown {
-    width: 425px;
+    width: 470px;
     display:flex;
     flex-direction: column;
     align-items: center;
     margin: 0 auto 3.25em auto;
 }
+
+/* Select element with multiple options */
 
 #dropdown-excel-sheets-tracking-expenses {
     display: inline-block;
@@ -459,11 +545,21 @@ label {
     color:#FFF;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
-
 }
 
-#submit-button-excel-sheet-tracking {
-    width: 130px;
+/* Container containing input fields such as "Show Expenses", "Clear Data Sheet", Delete Sheet */
+
+#container-buttons {
+    width: 470px;
+    display:flex;
+    justify-content: space-between;
+    margin-top: 1em;
+}
+
+/* Input fields of type button for actions "Show Expenses", "Clear Data Sheet", Delete Sheet */
+
+#submit-button-excel-sheet-tracking, #submit-button-clear-inputs, #submit-button-delete-file {
+    width: 140px;
     padding: 1em .66em;
     margin-top: 3em;
     font-size: 12px;
@@ -477,30 +573,32 @@ label {
     border-radius: 7px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
-
+    transition: background 0.4s ease, color 0.4s ease; 
 }
 
 
-/* container wrapping all the row representing an expense, it includes the label */
+#submit-button-excel-sheet-tracking:hover, #submit-button-clear-inputs:hover, #submit-button-delete-file:hover {
+    background: #984063;
+    color: #FFF;
+}
 
+
+
+/* Container for expense rows, labels and overview expense included */
 
 .container-only-for-track-expenses {
     width: 470px;
     margin: 0 auto;
-
-    
 }
 
-/* Each expense is wrapped by a div */
-
+/* Each expense position is wrapped in a div */
 
 .container-per-expense {
-    padding: 0 1em 0 0;
+    padding: 0 0 0 0;
     display:flex;
-
 }
 
-/* Concerns only the first row, it wrapps the label as well as the values associated to the label */
+/* Container for the first row label and associated values */
 
 #container-label-title {
     display:flex;
@@ -510,34 +608,30 @@ label {
     padding: 0;
 }
 
-/* IDs label represent each label present on the first row*/
+/* IDs representing labels on the first row */
 
 #label-0,#label-1,#label-2,#label-3,#label-4{
     font-style: italic;
     font-size: 15px;
     color:#000;
     display:inline-block;
-    /*text-decoration: underline 2px #984063; */
     font-weight: bolder;
     filter: drop-shadow(12px 12px 20px rgba(152, 64, 99, 0.2));
 }
 
-/* IDs value represent each value present on the first row*/
-
+/* IDs representing values on the first row */
 
 #value-0,#value-1,#value-2,#value-3,#value-4 {
-    padding: 0.65em 0 0.65em 0;
+    padding: 0.62em 0 0.62em 0;
     box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
     border-radius: 7px;
-    margin-left:.3em;
+    margin-left:0;
     margin-bottom: .8em;
     transition: box-shadow 0.3s ease-in-out;
     font-size: 15px;
-    
 }
 
-/* Represent each value per row except the first row*/
-
+/* A row contains "Expenses", "Currency", "Date". Each of those value is wrapped, "values" represent the div (excluding the first row) */
 
 .values {
     width: 125px;
@@ -546,14 +640,13 @@ label {
     margin-bottom: 0.8em;
     box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
     border-radius: 7px;
-    margin-left:.3em;
+    margin-left: 0;
     transition: box-shadow 0.3s ease-in-out;
     font-size: 15px;
 
 }
 
-/* When hovering over the containers wrapping each row representing an expense, visual transformation of the values  */
-
+/* Hover effect on expense row containers, transforming values */
 
 .container-per-expense:hover .values {
     box-shadow: rgba(152, 64, 99, 0.25) 0px 4px 8px -1px, rgba(152, 64, 99, 0.08) 0px 0px 0px 1px, 0 0 0 1px #984063;
@@ -573,8 +666,8 @@ label {
 
 }
 
-
-#get-you-cover-message{
+/* "Get you covered" message */
+#get-you-cover-message {
     color:#984063;
     font-weight: bolder;
     font-style: italic;
@@ -583,25 +676,30 @@ label {
     font-size: 20px;
     filter: drop-shadow(12px 12px 20px rgba(152, 64, 99, 0.2));
 }
-    
+
+/* Image frienship.svg imported */
 
 #img-tracking-expense-page {
     display: none;
 }
+
+
+/* Container for aggregate calculations */
 
 .container-aggregate-expenses {
     display:flex;
     flex-direction: column;
     margin-top: 4em;
     margin-bottom: 2em;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; /* https://getcssscan.com/css-box-shadow-examples */
-    width: 460px;
+    width: 470px;
     border-radius: 12px;
     background: linear-gradient(to bottom, #FFF, #41436A 600% );
     box-shadow: 0px 9px 30px rgba(152, 64, 99, 0.1);
     padding: 0 0 1.25em 0;
 
 }
+
+/* Title Total Payments Overview */
 
 #total-payment-owerview {
     color: #41436A;
@@ -612,11 +710,9 @@ label {
     margin-top:2em;
     letter-spacing: 1.6px;
     filter: drop-shadow(12px 12px 2px rgba(152, 64, 99, 0.2));
-
-
-
-
 }
+
+/* Class applied to labels "Aggregate Expenses in CHF", Total Payments CHF, Total Payments €: Total Payments £: , Total Payments $: */
 
 .aggregate-expenses-CHF, .aggregate-expenses {
     display:flex;
@@ -624,10 +720,9 @@ label {
     margin-left: 1.75em;
     justify-content: space-between;
     margin-top: .5em;
-
 }
 
-
+/* Class applied to labels "Aggregate Expenses in CHF", Total Payments CHF, Total Payments €: Total Payments £: , Total Payments $: */
 
 .label-agreggate-expenses {
     font-size: 16px;
@@ -636,8 +731,9 @@ label {
     color: #41436A;
     border-bottom: 1px solid transparent;
     transition: border-color 0.4s ease;
-
 }
+
+/* Container for labels and paragraphs */
 
 .total-amount-expenses {
     margin-right: 2.5em;
@@ -645,109 +741,99 @@ label {
     font-size: 16px;
     font-style: italic;
     font-weight: bolder;
-
 }
 
 .aggregate-expenses-CHF:hover .label-agreggate-expenses,
 .aggregate-expenses:hover .label-agreggate-expenses {
     color:#984063;
-    border-color:#984063
+    border-color:#984063;
 }
 
 .aggregate-expenses-CHF:hover .total-amount-expenses,
 .aggregate-expenses:hover .total-amount-expenses {
-    color:#984063 
+    color:#984063;
 }
 
-#clear-all-button {
-    display: block;
-    background-color: #984063;
-    color:#FFF;
-    width: 175px;
-    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
-    cursor:pointer;
-    border-radius: 7px;
-    padding: 1em .66em;
-    margin: 2.75em 1em 1.75em auto;
-    font-size: 15px;
-    letter-spacing: 1.6px;
-    cursor: pointer;
-    text-align: center;
-    font-weight: bolder;
-    outline: none; /* Remove outline */
-    box-shadow: none; /* Remove box shadow */
-    border:none; /* Remove border */
-    transition: background 0.4s ease, color 0.4s ease;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-    filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
-
-
-}
-
-
-#clear-all-button:hover {
-    background:#FFF;
-    color:#41436A;
-}
 
 
 @media (min-width: 750px) {
 
     /******* INDEX PAGE ********/
 
+    /* Modal content for index page when clicking button Create New Excel Sheet */
+
     #modal-content {
         width: 800px;
     }
+
+    /* Sheet name input box */
 
     #input-sheet-name {
         margin-top: 2em;
     }
 
+    /* Sheet name submit button */
+
     #submit-new-name-sheet {
         margin-top:2em;
     }
 
+
+
     /******* TRACKING EXPENSES ********/
+
+    /* Title : BudgetBuddy Helps You Keep Track of Your Expenses! */
+
 
     #title-tracking-expenses-page {
         font-size: 22px;
-        width: 525px;
-        
+        width: 600px;
+        text-align: center;
     }
+
+    /* Container for expense rows, labels and overview expense included */
 
 
     .container-only-for-track-expenses {
-        margin: 0 0 0 1.25em;
         margin: 0 auto 0 auto;
         width: 725px;
-
-        
     }
+
+    /* Each expense position is wrapped in a div, an expense position is a row */
+
+
+    .container-per-expense{
+        justify-content: center;
+    }
+
+    /* Container for the first row label and associated values */
+
 
     #container-label-title {
         width: 136px;
+        width: 131.5px
     }
-
+    
+ /* A row contains "Expenses", "Currency", "Date". Each of those value is wrapped, "values" represent the div (excluding the first row) */
+    
     .values {
         width: 131.5px;
     }
 
+    /* "Get you covered" message */
+
+
     #get-you-cover-message{
         text-align: center;
-      /*  margin-left: 1em; */
+        font-size: 22px;
     }
+
+    /* Container for aggregate calculations */
 
     .container-aggregate-expenses {
-        width: 525px;
+        width: 600px;
         margin: 0 auto 0 auto;
-    /*    margin-left: .5em;*/
     }
-
-    #clear-all-button {
-        margin: 3em auto 2em .5em;
-    }
-
-
 
 }
 
@@ -755,6 +841,8 @@ label {
 @media (min-width: 800px) {
 
     /********* POSTING PAGE ************* */
+
+    /* Button to submit data */
 
     #post-button {
         margin-top: 3em;
@@ -803,17 +891,18 @@ label {
     
     }
 
+    /* Styling for a class applied to three paragraphs explaining the benefits of the app */
+
 
     .introductory-paragrap-index-page {
         max-width: 990px;
         font-size: 22px
     }
 
-    #last-paragrap-index-page {
-        max-width: 900px;
-        font-size: 22px
 
-    }
+
+
+    /* Imported image "spreadsheet.svg" */
 
     #img-index-page{
         display: block;
@@ -827,6 +916,9 @@ label {
 
     /********* POSTING EXPENSES PAGE ************* */
 
+
+    /* Input form */
+
     #form-for-posting-expenses {
         max-width: 825px;
         margin-bottom: 3em;
@@ -835,41 +927,39 @@ label {
 
     /********* Tracking EXPENSES PAGE ************* */
 
-    
+  
+    /* Select element with multiple options */
     
     #dropdown-excel-sheets-tracking-expenses {
-        margin-top: 2em;
+        margin-top: 2em; 
     }
-    #submit-button-excel-sheet-tracking{
-        margin-bottom: 2em;
-    } 
+
+    /* Container for expense rows, labels and overview expense included */
 
     .container-only-for-track-expenses {
         width: 725px;
     }
+
+    /* Container for aggregate calculations */
 
     .container-aggregate-expenses {
         box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, #11111a1a 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
         margin: 4em auto;
     }
 
-    #clear-all-button {
-        margin: 3em 7em 2em auto;
-    }
-
-
-    
-
-
 }
 
 
 @media (min-width: 1200px) {
 
+    /* Title: "Post Your Expenses" */
+
     #title-form-posting-expenses {
         color:#984063;
 
     }
+
+    /* Container picture +  message "Leave the Math to Us" */
 
     #message-img-posting-expenses{
         position: absolute;
@@ -880,8 +970,11 @@ label {
         margin-right: 1.5em;
 
     }
+
+    /* Message "Leave the Math to Us" */
+
     
-    #message-posting-expenses-page{
+    #message-posting-expenses-page {
         font-size: 20px;
         width: 600px;
         font-style: italic;
@@ -892,13 +985,43 @@ label {
 
     }
 
-    #img-posting-expenses-page{
+    /* Imported image calcultor.svg */
+
+    #img-posting-expenses-page {
         width: 80%;
         filter: drop-shadow(12px 12px 5px rgba(152, 64, 99, 0.2));
     }
 }
 
 @media (min-width: 1400px) {
+
+    /****** TRACKING EXPENSES PAGE ****** /
+
+    /* Title : BudgetBuddy Helps You Keep Track of Your Expenses! */
+
+
+    #title-tracking-expenses-page {
+        margin: 4em 0 2em 5.5em;
+
+    }
+
+    /*Container containing Select and Option tags for Excel Sheets, along with input fields such as "Show Expenses", etc." */
+
+    #div-excel-sheet-dropdown {
+        align-items: center;
+        margin: 0 0 4.25em 3em;
+        width: 725px;
+        padding: 0 4em 2.5em 4em;
+        box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+        box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+
+    }
+
+    /* Container containing input fields such as "Show Expenses", "Clear Data Sheet", Delete Sheet) */
+
+    #container-buttons {
+        margin-top: 2em;
+    }
 
     #message-img-we-get-you-cover{
         display:block;
@@ -910,6 +1033,8 @@ label {
         bottom: -18em;
     }
 
+    /* "Get you covered" message */
+
     #get-you-cover-message {
         font-size: 21px;
         color:#984063;
@@ -919,64 +1044,63 @@ label {
 
     }
 
+    /* friendship.svg image imported */
+
     #img-tracking-expense-page {
         width: 90%;
         display: unset
         
     }
+    
+    /* Container for expense rows, labels and overview expense included */
 
     .container-only-for-track-expenses {
          width: 725px;
-         margin: 0 auto 1em auto;
          margin: 0 0 1em 3em;
          
      }
+
+     /* Container for aggregate calculations */
  
      .container-aggregate-expenses {
          box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, #11111a1a 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
-         margin: 8em auto 3em 0em;
+         margin: 8em auto 3em auto;
         /*https://htmlcssfreebies.com/css-box-shadow-examples/ */
          box-shadow: 0px 9px 30px rgba(152, 64, 99, 0.1);
      }
-
-     #clear-all-button {
-        margin: 3em 0 2em 0em;
-    }
 
 }
 
 
 @media (min-width: 1400px) {
 
-    #message-img-posting-expenses{
+    /* Message ... Leave the Math to Us ... */
+
+    #message-img-posting-expenses {
         right: 15%;
 
     }
+    
+    /* Imported image calcultor.svg */
 
     #img-posting-expenses-page{
         margin-top:3em;
 
     }
 
-
-
-
 }
 
 
 @media (min-width: 1600px) {
 
+    /* Imported image calcultor.svg */
 
-    #img-posting-expenses-page{
+    #img-posting-expenses-page {
         display: block;
         width: 500px;
         position: absolute;
         top: 60%;
         right: 7%;
-
     }
 
-
 }
-
-
