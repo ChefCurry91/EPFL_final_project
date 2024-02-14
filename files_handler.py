@@ -432,19 +432,7 @@ class FilesHandler():
         if active_sheet.title == 'Sheet':
             return
        
-            active_sheet.delete_rows(2, active_sheet.max_row)
 
-            # Retrieve names stored in the "file_names.txt" file.
-            # The objective is to create an array that serves as the basis for a new array,
-            # excluding the name of the file to be deleted.
-            file_names= open(self.file_names)
-            content = file_names.read()
-            file_names.close()
-
-
-            array_file_names = content.split(' ')
-
-            return array_file_name
             
 
 
