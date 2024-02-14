@@ -413,8 +413,6 @@ class FilesHandler():
         # https://ioflood.com/blog/python-os-path/#:~:text=In%20this%20example%2C%20we're,to%20a%20user's%20documents%20directory.
         
         file_path = os.path.join(self.path, self.excel_file)
-        print('hello')
-        print(file_path)
 
 
         # For excel sheet manipulation, I relied on the following source:
@@ -427,7 +425,6 @@ class FilesHandler():
 
         # Store the name of the selected sheet in the variable "active_sheet"
         active_sheet = wb[excel_sheet_selected]
-        print(active_sheet)
         
         # If the selected sheet's name is "Sheet," delete all rows except the first one.
         # Ensuring that at least one sheet exists is the object
@@ -456,7 +453,6 @@ class FilesHandler():
 
         elif active_sheet.title != 'Sheet':
             # delete the file
-            print(txt_file_from_excel_sheet_selected)
             os.remove(txt_file_from_excel_sheet_selected)
 
             # Retrieve names stored in the "file_names.txt" file.
