@@ -1,4 +1,4 @@
-from flask import Flask, request, session
+from flask import Flask, request
 import os
 from openpyxl import Workbook,load_workbook
 from files_handler import FilesHandler
@@ -14,12 +14,14 @@ import datetime
 # https://www.tutorialspoint.com/How-to-find-the-real-user-home-directory-using-Python
 
 desktop_path = os.path.join(os.path.expanduser('~'), 'Desktop')
-file = 'expenses_data.txt'
-file_names = 'file_names.txt'
-excel_file = 'expenses.xlsx'
 
-my_files_handler= FilesHandler(desktop_path,excel_file,file,file_names)
+# Instantiate class "FileHandler"
 
+my_files_handler= FilesHandler(desktop_path)
+
+
+my_files_handler.file_names='file_names.txt'
+my_files_handler.excel_file = 'expenses.xlsx'
 
 
 my_files_handler.create_excel_file()
@@ -58,7 +60,7 @@ def post_expenses():
 
     # Retrieve the names of files corresponding to sheets created in the Excel file
     # Each name is recorded in the text file "file_names.txt"
-    file_names_array= my_files_handler.get_file_names_()
+    file_names_array= my_files_handler.get_file_names()
     
     # Create a <select> tag with all the sheet names contained in the Excel file
 
@@ -143,7 +145,7 @@ def track_expenses():
 
     # Retrieve the names of files corresponding to sheets created in the Excel file
     # Each name is recorded in the text file "file_names.txt""
-    file_names_array= my_files_handler.get_file_names_()
+    file_names_array= my_files_handler.get_file_names()
 
 
     # Create a <select> tag with all the sheet names contained in the Excel file
@@ -186,7 +188,8 @@ def track_expenses():
             if excel_sheet_name_selected != 'Sheet':
                 new_file_names_array = my_files_handler.delete_files(txt_file_name,excel_sheet_name_selected)
             
-                file_path = os.path.join(desktop_path,excel_file)
+                file_path = os.path.join(desktop_path,my_files_handler.excel_file)
+
 
                 # Opening Excel Documents with OpenPyXL
                 wb = load_workbook(file_path)
@@ -202,7 +205,8 @@ def track_expenses():
             # Ensuring that at least one sheet exists in the object
                             
             elif excel_sheet_name_selected == 'Sheet':
-                file_path = os.path.join(desktop_path,excel_file)
+                file_path = os.path.join(desktop_path,my_files_handler.excel_file)
+
                 wb = load_workbook(file_path)
                 
                 # Store the name of the selected sheet in the variable "active_sheet"

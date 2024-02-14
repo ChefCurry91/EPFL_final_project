@@ -8,12 +8,12 @@ from data_title_column_excel import dict_data_title_column
 
 class FilesHandler():
 
+    file_names= ''
+    excel_file = ''
+
     #Initialize the path where the Excel file will be stored
-    def __init__(self, path,excel_file,file_name,file_names):
+    def __init__(self, path):
         self.path = path
-        self.excel_file = excel_file
-        self.file_name = file_name
-        self.file_names = file_names
 
 
         
@@ -51,6 +51,7 @@ class FilesHandler():
         # Joining Paths with os.path.join
         # https://ioflood.com/blog/python-os-path/#:~:text=In%20this%20example%2C%20we're,to%20a%20user's%20documents%20directory.
         file_path = os.path.join(self.path, self.excel_file)
+        
 
         # Save operation applied to the Excel workbook
         wb.save(file_path)
@@ -59,6 +60,7 @@ class FilesHandler():
         # From here, we add the name of the first Excel sheet created in the Excel file
         # to the .txt file containing all the names corresponding to created Excel sheets
         file_containing_file_names = os.path.basename(self.file_names)
+
 
         # Get the full path to the file
         full_file_path = os.path.join(os.getcwd(), file_containing_file_names)
@@ -87,6 +89,7 @@ class FilesHandler():
         wb = Workbook()
 
         file_path = os.path.join(self.path, self.excel_file)
+
 
         # For excel sheet manipulation, I relied on the following source:
         # Automate the Boring Stuff with Python: Practical Programming for Total Beginners by AI Sweighart
@@ -139,12 +142,12 @@ class FilesHandler():
         file_names.close()
 
 
-    def get_file_names_(self):
+    def get_file_names(self):
 
         # Retrieve names stored in the "file_names.txt" file
         # The goal is to use these names for displaying options on the "posting-expenses" page.
         # This enables the user to choose the Excel sheet for posting expenses and to display any sheet on the "tracking-expenses" page.
-        file_names= open(self.file_names)
+        file_names=open(self.file_names)
         content = file_names.read()
         file_names.close()
         
@@ -378,10 +381,6 @@ class FilesHandler():
         return two_dimensional_array_expenses
     
     
-    def clear_all_data_txt_file(self):
-        my_file_to_delete = open(self.file_name,'w')
-        my_file_to_delete.close()
-    
     def clear_all_data(self,txt_file_from_excel_sheet_selected,excel_sheet_selected):
         my_file_to_delete = open(txt_file_from_excel_sheet_selected,'w')
         my_file_to_delete.close
@@ -389,6 +388,8 @@ class FilesHandler():
         # Joining Paths with os.path.join
         # https://ioflood.com/blog/python-os-path/#:~:text=In%20this%20example%2C%20we're,to%20a%20user's%20documents%20directory.
         file_path = os.path.join(self.path, self.excel_file)
+
+
 
         # For excel sheet manipulation, I relied on the following source:
         # Automate the Boring Stuff with Python: Practical Programming for Total Beginners by AI Sweighart
@@ -415,6 +416,7 @@ class FilesHandler():
         # https://ioflood.com/blog/python-os-path/#:~:text=In%20this%20example%2C%20we're,to%20a%20user's%20documents%20directory.
         
         file_path = os.path.join(self.path, self.excel_file)
+
 
         # For excel sheet manipulation, I relied on the following source:
         # Automate the Boring Stuff with Python: Practical Programming for Total Beginners by AI Sweighart
