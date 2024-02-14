@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, request, url_for, redirect
 import os
 from openpyxl import Workbook,load_workbook
 from files_handler import FilesHandler
@@ -14,14 +14,14 @@ import datetime
 # https://www.tutorialspoint.com/How-to-find-the-real-user-home-directory-using-Python
 
 desktop_path = os.path.join(os.path.expanduser('~'), 'Desktop')
-
+#excel_files = 'expenses.xlsx'
 # Instantiate class "FileHandler"
 
 my_files_handler= FilesHandler(desktop_path)
 
 
 my_files_handler.file_names='file_names.txt'
-my_files_handler.excel_file = 'expenses.xlsx'
+my_files_handler.excel_file ='expenses.xlsx'
 
 
 my_files_handler.create_excel_file()
@@ -47,6 +47,7 @@ def index_page():
 
     sheet_name = request.form.get('sheet-name')
     if request.method == 'POST':
+        # Generate excel and txt file
         my_files_handler.create_excel_sheet(sheet_name)
         my_files_handler.create_txt_file(sheet_name)
 
@@ -170,7 +171,9 @@ def track_expenses():
 
     # Select the sheet we want to display for tracking
     excel_sheet_name_selected = request.form.get('sheet-name-tracking')
-       
+    
+    # Choose one the available action, we want to perform on the Excel sheet selected: 
+
     track_expenses = request.form.get('input-sheet-tracking')
     clear_all_inputs = request.form.get('clear-all-inputs')
     delete_file = request.form.get('delete_file')
@@ -181,6 +184,8 @@ def track_expenses():
         if clear_all_inputs:
             txt_file_name=excel_sheet_name_selected + '.txt'
             my_files_handler.clear_all_data(txt_file_name,excel_sheet_name_selected)
+
+            
         
         elif delete_file:
             txt_file_name=excel_sheet_name_selected + '.txt'
@@ -201,6 +206,29 @@ def track_expenses():
                             sheet_to_delete = wb[excel_sheet_name_selected]
                             wb.remove(sheet_to_delete)
 
+                            #As we are deleting an Excel sheet, it's necessary to update the select tag and its options by calling 
+                            # the get_file_names() method again and updating the current_values variable accordingly."
+
+                            # Retrieve the names of files corresponding to sheets created in the Excel file
+                            # Each name is recorded in the text file "file_names.txt""
+                            file_names_array= my_files_handler.get_file_names()
+
+                            # Create a <select> tag with all the sheet names contained in the Excel file
+
+                            current_values='<div id="div-excel-sheet-dropdown"><select id = "dropdown-excel-sheets-tracking-expenses" name="sheet-name-tracking"> <option> ---Select Your Excel Sheet--- </option>' 
+    
+                            # Loop through the array file_names_array to retrieve all the sheet names created, 
+                            # and add each name as a value to the <option> tag
+
+                            for file_name in file_names_array:
+                                excel_sheet_name = file_name[:-4]
+                                current_values+= f'<option value="{excel_sheet_name}">{excel_sheet_name}</option>'
+                            
+                            current_values+= ' </select> <div id ="container-buttons"> <input id="submit-button-excel-sheet-tracking" type="submit" name = "input-sheet-tracking" value="Show Expenses"> <input id="submit-button-clear-inputs" type="submit" name="clear-all-inputs" value="Clear Data Sheet"> <input id="submit-button-delete-file" type="submit" name="delete_file" value="Delete Sheet"> </div></div>'
+                            
+                
+               
+    
             # If the selected sheet's name is "Sheet," delete all rows except the first one.
             # Ensuring that at least one sheet exists in the object
                             
@@ -217,12 +245,9 @@ def track_expenses():
                 my_file_to_clear = open(txt_file_name,'w')
                 my_file_to_clear.close
 
-
             wb.save(file_path)
 
 
-
-        
         elif track_expenses:
        
             # Add the suffix "txt" to the selected Excel sheet in the form

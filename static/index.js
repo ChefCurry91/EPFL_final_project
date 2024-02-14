@@ -57,8 +57,8 @@ const addUserName = () => {
 
   // First display "Welcome Username" message on front-end
   const userName = document.createElement('p');
-  userName.innerText = `Welcome ${userNameToAdd.value}`;
-  userName.className = 'username-added';
+  userName.innerText = `Welcome ${userNameToAdd.value} !`;
+  userName.className = 'username-added-message';
   content.appendChild(userName);
              
   // Setting up key-value pair in local storage 

@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, url_for, redirect
 from openpyxl import Workbook,load_workbook
 from openpyxl.styles import Font 
 import os, datetime
@@ -8,12 +8,13 @@ from data_title_column_excel import dict_data_title_column
 
 class FilesHandler():
 
-    file_names= ''
-    excel_file = ''
+    file_names=''
+    excel_file=''
 
     #Initialize the path where the Excel file will be stored
     def __init__(self, path):
         self.path = path
+        #self.excel_files = excel_files
 
 
         
@@ -184,7 +185,6 @@ class FilesHandler():
                 # Access elements of a Nested Dictionary:
                 # https://www.programiz.com/python-programming/nested-dictionary
                 converted_amount = data['rates']['CHF']
-                print(f"{amount} {currency_payment} = {converted_amount} CHF at {date_exchange_rate}")
                 
                 # amount_converted is rounded to 2 decimal
                 round(float(converted_amount), 2)
@@ -203,7 +203,7 @@ class FilesHandler():
         # Joining Paths with os.path.join
         # https://ioflood.com/blog/python-os-path/#:~:text=In%20this%20example%2C%20we're,to%20a%20user's%20documents%20directory.
         
-        # After testing, it was observed that when assigning 'file_name = self.excel_file', the application might crashes. 
+        # After testing, it was observed that when assigning 'file_name = self.excel_file', the application might crashe. 
         # JS functionanaliy preventFalseValues in "trackig-expenses" does not work. 
         # Therefore, to prevent this issue, the variable 'file_name' was initialized as 'file_name = 'expenses.xlsx'
         
@@ -223,10 +223,6 @@ class FilesHandler():
         
         active_sheet = wb[excel_sheet_selected]
         
-        #for sheet_name in wb.sheetnames:
-         #   if sheet_name == excel_sheet_selected:
-          #      active_sheet = wb[sheet_name]
-                
 
         
         #sheet.max_row => get the maximum number of occupied rows 
@@ -332,7 +328,6 @@ class FilesHandler():
         # https://pythonhow.com/how/check-if-a-text-file-is-empty/#:~:text=getsize('nodata.,would%20output%20File%20is%20empty.
         
         if os.path.getsize(my_file_name) != 0:
-            print('Empty')
             break_line ='\n'
             my_file.write(break_line)
 
@@ -409,6 +404,8 @@ class FilesHandler():
         wb.save(file_path)
 
 
+
+
     
     def delete_files(self,txt_file_from_excel_sheet_selected,excel_sheet_selected):
 
@@ -416,6 +413,8 @@ class FilesHandler():
         # https://ioflood.com/blog/python-os-path/#:~:text=In%20this%20example%2C%20we're,to%20a%20user's%20documents%20directory.
         
         file_path = os.path.join(self.path, self.excel_file)
+        print('hello')
+        print(file_path)
 
 
         # For excel sheet manipulation, I relied on the following source:
@@ -428,12 +427,28 @@ class FilesHandler():
 
         # Store the name of the selected sheet in the variable "active_sheet"
         active_sheet = wb[excel_sheet_selected]
+        print(active_sheet)
         
         # If the selected sheet's name is "Sheet," delete all rows except the first one.
         # Ensuring that at least one sheet exists is the object
 
         if active_sheet.title == 'Sheet':
             return
+       
+            active_sheet.delete_rows(2, active_sheet.max_row)
+
+            # Retrieve names stored in the "file_names.txt" file.
+            # The objective is to create an array that serves as the basis for a new array,
+            # excluding the name of the file to be deleted.
+            file_names= open(self.file_names)
+            content = file_names.read()
+            file_names.close()
+
+
+            array_file_names = content.split(' ')
+
+            return array_file_name
+            
 
 
         # If the selected sheet's name is not "Sheet," delete the corresponding text file and 
@@ -441,6 +456,7 @@ class FilesHandler():
 
         elif active_sheet.title != 'Sheet':
             # delete the file
+            print(txt_file_from_excel_sheet_selected)
             os.remove(txt_file_from_excel_sheet_selected)
 
             # Retrieve names stored in the "file_names.txt" file.
@@ -459,7 +475,6 @@ class FilesHandler():
             temp = []
             for file_name in array_file_names:
                 if file_name != txt_file_from_excel_sheet_selected:
-                    print(file_name)
                     temp.append(file_name)
             
 
@@ -469,7 +484,6 @@ class FilesHandler():
             file_names_file.close()
 
             return temp
-                
         wb.save(file_path)
         
         
