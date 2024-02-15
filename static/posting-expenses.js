@@ -1,6 +1,6 @@
 
-{/* variable related to form button "Post It"  */}
 
+// Get the button to post the expenses
 const postButton = document.getElementById('post-button');
 
 
@@ -40,7 +40,7 @@ const checkValues = (event) => {
 
    // Verify if any field is empty, if a currency payment option is selected, or if an Excel sheet is selected
    if (!expense.trim() || !amount.trim() || !date.trim() || currencyPayment === "---Choose Currency Payment---" || excel_sheet_selected === "---Choose Excel Sheet---") {
-         // Prevent form submission
+      // Prevent form submission
       event.preventDefault();
       alert('Please fill in all required fields.');
    

@@ -32,27 +32,30 @@ window.onclick = (event) => {
  } 
 
 
- // Functionality related to local storage
+ // Local storage
 
 
- // Variable related to the input box where the name is entered"
+// Get the the inputbox the username is entered
 const userNameToAdd = document.getElementById('username-to-add');
-// Variable related to the button used to submit the entered name
+
+// Get the button used to submit username
 const buttonAddUserName = document.getElementById('button-add-username');
-// Variable related to the div where the message "Welcome ${userName}" is displayed
+
+// Get the div where where message is displayed
 const content = document.getElementById('content-to-add');
-// Variable related to the div where the input box, button, and title message are displayed.
+
+// Get the div, where the input box, button, and title message are displayed.
 // This div will be removed once a value is added to local storage.
 const contentToEnterUserName = document.getElementById('container-welcome-username');
 
 
 
-{/* Function aiming:
+    // Function aiming at:
+ 
+    //  - Adding a welcome message with the username on the front-end
+    //  - Removing the message, input box, and button where the username is entered and submitted
+    //  - Storing the value of the key-value pair 'username: name' in local storage 
 
-      - To add Welcome username on front-end
-      - Remove  message, inputbox and button where username is enterred and submitted
-      - Storing value of key-value pair username: name in local storage */}
-  
 const addUserName = () => {
 
   // First display "Welcome Username" message on front-end
@@ -67,7 +70,7 @@ const addUserName = () => {
   // Clearing inputbox after submitting username 
   userNameToAdd.value='';
 
-  // Remove  message, inputbox and button where username is enterred and submitted */}
+  // Remove message, inputbox and button where username is enterred and submitted 
   contentToEnterUserName.remove();
 }
 
@@ -82,9 +85,11 @@ const getUsernameFromLocalStorage = () => {
   // Get value from key-value pair stored in local storage
   const localStorageValue = localStorage.getItem('username');
   
-  // if value is equal to True, meaning it is stored in local storage, then
-  // Display on front end Message Welcome username
-  // Finally remove container with message inputbox and button
+
+
+{/* If the value is equal to True, indicating it is stored in local storage, then
+    Display on the front end message "Hey ${localStorageValue}, Great To See You!"
+    Finally, remove the container with the message, input box, and button */}
       
   
   if (localStorageValue) {
@@ -93,16 +98,20 @@ const getUsernameFromLocalStorage = () => {
     userName.className = 'username-added-message';
     content.appendChild(userName);
   
-    contentToEnterUserName.remove()
+    contentToEnterUserName.remove();
 
-  
-    return localStorageValue 
+    return localStorageValue; 
   }
 
+ else {
+    return;
+  }
 }
+
+
   
 getUsernameFromLocalStorage();
   
   
   
-buttonAddUserName.addEventListener('click', addUserName);
+buttonAddUserName.addEventListener('click', addUserName)

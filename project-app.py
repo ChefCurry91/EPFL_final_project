@@ -1,4 +1,4 @@
-from flask import Flask, request, request, url_for, redirect
+from flask import Flask, request, redirect, url_for
 import os
 from openpyxl import Workbook,load_workbook
 from files_handler import FilesHandler
@@ -184,6 +184,11 @@ def track_expenses():
         if clear_all_inputs:
             txt_file_name=excel_sheet_name_selected + '.txt'
             my_files_handler.clear_all_data(txt_file_name,excel_sheet_name_selected)
+            
+            # https://pythonbasics.org/flask-redirect-and-errors/
+            # Redirect to the same page
+            return redirect(url_for('track_expenses'))  
+
 
             
         
@@ -192,7 +197,6 @@ def track_expenses():
 
             if excel_sheet_name_selected != 'Sheet':
                 new_file_names_array = my_files_handler.delete_files(txt_file_name,excel_sheet_name_selected)
-            
                 file_path = os.path.join(desktop_path,my_files_handler.excel_file)
 
 
@@ -246,6 +250,9 @@ def track_expenses():
                 my_file_to_clear.close
 
             wb.save(file_path)
+            # https://pythonbasics.org/flask-redirect-and-errors/
+            # Redirect to the same page
+            return redirect(url_for('track_expenses')) 
 
 
         elif track_expenses:

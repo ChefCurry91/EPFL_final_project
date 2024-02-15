@@ -14,7 +14,7 @@ const deleteFileButton = document.getElementById('submit-button-delete-file');
 
 const form = document.getElementById('form-for-selecting-sheet');
 
-{/* /* Function aimed at preventing the selection of no sheet, which could cause an internal error. */ }
+/* This function is designed to prevent the selection of no sheet, which could potentially lead to an internal error. */
 
 const preventFalseValue = (event) => {
    let clearAllInputs = document.getElementById('dropdown-excel-sheets-tracking-expenses').value;
