@@ -29,7 +29,7 @@ List those here (if any).
   - Line number(s) for the class definition: line 9
   - Name of two properties: a) file_names b) excel_file
   - Name of two methods: a) create_excel_file; b) create_excel_sheet; c) create_txt_file; d) get_file_names; e) get_payment_converted; f) add_data_to_excel_sheet; g) add_data_to_txt_file; h) get_data_added_to_txt_file; i) clear_all_data; 
-  - File name and line numbers where the methods are used: project-app.py: a) line 27; b) line 51; c) line 52; d) line 64, 149, 214; e) line 105 and 109 ; f) line 134 ; g) line 135 ; h) line 179 and line 260; i) line 186;
+  - File name and line numbers where the methods are used: project-app.py: a) line 25; b) line 51; c) line 52; d) line 64, 149, 218; e) line 105 and 109 ; f) line 134 ; g) line 135 ; h) line 170 and line 267; i) line 186;
 - [x] It makes use of JavaScript in the front end and uses the localStorage of the web browser.
 - [x] It uses modern JavaScript (for example, let and const rather than var).
 - [x] It makes use of the reading and writing to the same file feature.
