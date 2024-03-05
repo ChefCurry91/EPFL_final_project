@@ -1,7 +1,7 @@
-from flask import Flask, request
+from flask import Flask
 from openpyxl import Workbook,load_workbook
 from openpyxl.styles import Font 
-import os, datetime
+import os
 import requests
 from data_title_column_excel import dict_data_title_column
 
@@ -155,7 +155,8 @@ class FilesHandler():
         array_file_names = content.split(' ')
 
         # Remove white spaces from the array
-        temp_array_file_names = array_file_names.pop()
+        #temp_array_file_names = array_file_names.pop()
+        array_file_names.pop()
         return array_file_names
     
     
@@ -195,9 +196,6 @@ class FilesHandler():
 
 
     def add_data_to_excel_sheet(self,data_expense,excel_sheet_selected):
-
-
-        bold_font_13 = Font(size=13, bold=True) 
         
         # Joining Paths with os.path.join
         # https://ioflood.com/blog/python-os-path/#:~:text=In%20this%20example%2C%20we're,to%20a%20user's%20documents%20directory.
@@ -206,9 +204,10 @@ class FilesHandler():
         # JS functionanaliy preventFalseValues in "trackig-expenses" does not work. 
         # Therefore, to prevent this issue, the variable 'file_name' was initialized as 'file_name = 'expenses.xlsx'
         
-        file_name = 'expenses.xlsx'
+        #file_name = 'expenses.xlsx'
         #file_name =self.excel_file
-        file_path = os.path.join(self.path,file_name)
+        #print(self.excel_file)
+        file_path = os.path.join(self.path,self.excel_file)
         
 
         # For excel sheet manipulation, I relied on the following source:
@@ -307,7 +306,7 @@ class FilesHandler():
 
                     
             wb.save(file_path)
-            wb.close
+            wb.close()
             return total_amount
         
         except:
@@ -338,7 +337,8 @@ class FilesHandler():
        # We loop through it to extract only the values and add them to the .txt file corresponding to the Excel sheet.
        # The values are stored as strings for convenience.
             
-            for key, value in data_expense.items():
+           # for key, value in data_expense.items():
+            for value in data_expense.values():
                value_stringified= str(value) + ' '
                content_file = value_stringified
                my_file.write(content_file)
@@ -346,7 +346,8 @@ class FilesHandler():
 
         
         else:
-            for key, value in data_expense.items():
+            #for key, value in data_expense.items():
+            for value in data_expense.values():
                 value_stringified= str(value) + ' '
                 content_file = value_stringified    
                 my_file.write(content_file)
@@ -377,7 +378,7 @@ class FilesHandler():
     
     def clear_all_data(self,txt_file_from_excel_sheet_selected,excel_sheet_selected):
         my_file_to_delete = open(txt_file_from_excel_sheet_selected,'w')
-        my_file_to_delete.close
+        my_file_to_delete.close()
 
         # Joining Paths with os.path.join
         # https://ioflood.com/blog/python-os-path/#:~:text=In%20this%20example%2C%20we're,to%20a%20user's%20documents%20directory.

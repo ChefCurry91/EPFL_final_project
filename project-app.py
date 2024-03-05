@@ -2,7 +2,6 @@ from flask import Flask, request, redirect, url_for
 import os
 from openpyxl import Workbook,load_workbook
 from files_handler import FilesHandler
-from data_title_column_excel import dict_data_title_column
 import datetime
 
 
@@ -14,9 +13,8 @@ import datetime
 # https://www.tutorialspoint.com/How-to-find-the-real-user-home-directory-using-Python
 
 desktop_path = os.path.join(os.path.expanduser('~'), 'Desktop')
-#excel_files = 'expenses.xlsx'
-# Instantiate class "FileHandler"
 
+# Instantiate class "FileHandler"
 my_files_handler= FilesHandler(desktop_path)
 
 
@@ -33,7 +31,16 @@ app = Flask('project-app')
 
 
 def get_html(page_name):
-    path= '/Users/fabio/Documents/TCC/s18-project-app/templates'
+    
+    # Get the directory of the current script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Define the relative path from the script's directory
+    relative_path = 'templates'
+
+    # Construct the absolute path using the script directory and relative path
+    path = os.path.join(script_dir,relative_path)
+
     complete_path = os.path.join(path, page_name)
     html_file = open(complete_path + '.html')
     content = html_file.read()
