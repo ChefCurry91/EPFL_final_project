@@ -53,6 +53,10 @@ const checkValues = (event) => {
    } else if (datePosted > today) {
       event.preventDefault();
       alert('Please enter a date earlier than today.');
+
+   } else if (expense.includes(' ')) {
+      event.preventDefault();
+      alert('Please provide only one word for the expense. No spaces allowed.');
    }
 
 };
