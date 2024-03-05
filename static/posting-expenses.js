@@ -45,9 +45,14 @@ const checkValues = (event) => {
       alert('Please fill in all required fields.');
    
    // Verify that a numerical value is entered
-   } else if (isNaN(amount) ) {
+   } else if (isNaN(amount)) {
       event.preventDefault();
       alert('Please enter a valid number for the amount field.');
+   
+   // Verify that the amount is equal to  0 or greater
+   } else if (amount < 0) {
+         event.preventDefault();
+         alert('Please enter a valid positive number for the amount.');
 
    // Verify that a date earlier than the current day is selected
    } else if (datePosted > today) {
