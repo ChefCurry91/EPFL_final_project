@@ -21,10 +21,9 @@ my_files_handler= FilesHandler(desktop_path)
 my_files_handler.file_names='file_names.txt'
 my_files_handler.excel_file ='expenses.xlsx'
 
-
 my_files_handler.create_excel_file()
 
-
+my_files_handler.write_method_called()
 
 
 app = Flask('project-app')

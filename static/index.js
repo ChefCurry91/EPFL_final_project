@@ -32,15 +32,22 @@ window.onclick = (event) => {
    }
  } 
 
+ 
+// Get the button responsible for submitting the name of the new Excel sheet to be created
+
 const btnSubmitNewExcelSheet = document.getElementById("submit-new-name-sheet");
 
- const checkNameExcelSheetToCreate = (event) => {
-  
-  const input = document.getElementById('input-sheet-name').value
+// This function aims to prevent the submission of names containing whitespace; 
+// only a single string of characters is allowed
 
-  if (input.includes(' ')) {
+const checkNameExcelSheetToCreate = (event) => {
+  
+  const inputExcelSheetName = document.getElementById('input-sheet-name').value
+
+  // Verify that only a single string of characters is allowed
+  if (inputExcelSheetName.includes(' ')) {
     event.preventDefault();
-    alert('Please provide a string of characters without spaces.')
+    alert('Please provide a string of characters without spaces.');
   }
 
  }

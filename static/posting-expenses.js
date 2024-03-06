@@ -58,7 +58,8 @@ const checkValues = (event) => {
    } else if (datePosted > today) {
       event.preventDefault();
       alert('Please enter a date earlier than today.');
-
+   
+   // Verify that only a single string of characters is allowed
    } else if (expense.includes(' ')) {
       event.preventDefault();
       alert('Please provide only one word for the expense. No spaces allowed.');

@@ -11,79 +11,111 @@ class FilesHandler():
     file_names=''
     excel_file=''
 
-    #Initialize the path where the Excel file will be stored
+
+
+    # Initialize the path where the Excel file will be stored
     def __init__(self, path):
         self.path = path
 
+    # When the app starts running for the first time, write 'True' to the "file method_called.txt'
 
-        
+    def write_method_called(self):
+        file = open('method_called.txt', 'w')
+        file.write('True')
+        file.close()
 
+    # read_method_called is used to read if word "True"
+    # was added to file named "method_called.txt". 
+
+    def read_method_called(self):
+        try:
+            file = open('method_called.txt', 'r')
+            content = file.read().strip() == 'True'
+            file.close()
+            return content
+        except FileNotFoundError:
+            return False
+    
     # For excel sheet manipulation, I relied on the following source:
     # Automate the Boring Stuff with Python: Practical Programming for Total Beginners by AI Sweighart
     # https://automatetheboringstuff.com/2e/chapter13/
 
     def create_excel_file(self):
 
-        wb = Workbook()
+    
+        # When the create_excel_file method is called, if the read_method_called method of the FilesHandler class returns False, 
+        # it indicates that the method has not been called before, 
+        # The method executes and sets the state to True using write_method_called. 
+        # Otherwise, it does nothing.
 
-        # Get the active sheet (or specify a specific sheet if needed)
-        sheet = wb.active
 
-        # To customize font styles in cells,
-        # import the Font() function from the openpyxl.styles module.
+        if not FilesHandler.read_method_called(self):
+
+            wb = Workbook()
+
+            # Get the active sheet (or specify a specific sheet if needed)
+            sheet = wb.active
+
+            # To customize font styles in cells,
+            # import the Font() function from the openpyxl.styles module.
         
-        # Create a font.
-        bold_font_italic_16 = Font(size=16, bold=True, italic=True) 
+            # Create a font.
+            bold_font_italic_16 = Font(size=16, bold=True, italic=True) 
 
-        # Iterating through dictionnary
-        # https://realpython.com/iterate-through-dictionary-python/
+            # Iterating through dictionnary
+            # https://realpython.com/iterate-through-dictionary-python/
         
 
-        # By iterating through the dictionary, we define the titles for each column 
-        # and make adjustments to the font and size for each respective column.
-        for letter,title in dict_data_title_column.items():
-            sheet[letter+'1'] = title
-            sheet[letter +'1'].font=bold_font_italic_16
-            sheet.column_dimensions[letter].width =  35
+            # By iterating through the dictionary, we define the titles for each column 
+            # and make adjustments to the font and size for each respective column.
+            for letter,title in dict_data_title_column.items():
+                sheet[letter+'1'] = title
+                sheet[letter +'1'].font=bold_font_italic_16
+                sheet.column_dimensions[letter].width =  35
             
        
 
-        # Joining Paths with os.path.join
-        # https://ioflood.com/blog/python-os-path/#:~:text=In%20this%20example%2C%20we're,to%20a%20user's%20documents%20directory.
-        file_path = os.path.join(self.path, self.excel_file)
+            # Joining Paths with os.path.join
+            # https://ioflood.com/blog/python-os-path/#:~:text=In%20this%20example%2C%20we're,to%20a%20user's%20documents%20directory.
+            file_path = os.path.join(self.path, self.excel_file)
         
 
-        # Save operation applied to the Excel workbook
-        wb.save(file_path)
-        wb.close()
+            # Save operation applied to the Excel workbook
+            wb.save(file_path)
+            wb.close()
 
-        # From here, we add the name of the first Excel sheet created in the Excel file
-        # to the .txt file containing all the names corresponding to created Excel sheets
-        file_containing_file_names = os.path.basename(self.file_names)
+            # From here, we add the name of the first Excel sheet created in the Excel file
+            # to the .txt file containing all the names corresponding to created Excel sheets
+            file_containing_file_names = os.path.basename(self.file_names)
 
 
-        # Get the full path to the file
-        full_file_path = os.path.join(os.getcwd(), file_containing_file_names)
+            # Get the full path to the file
+            full_file_path = os.path.join(os.getcwd(), file_containing_file_names)
 
-        # Check if a text file is not empty, 
-        # Ensuring that no line break is added if the file contains no content
-        # https://pythonhow.com/how/check-if-a-text-file-is-empty/#:~:text=getsize('nodata.,would%20output%20File%20is%20empty.
+            # Check if a text file is not empty, 
+            # Ensuring that no line break is added if the file contains no content
+            # https://pythonhow.com/how/check-if-a-text-file-is-empty/#:~:text=getsize('nodata.,would%20output%20File%20is%20empty.
         
   
-        if os.path.getsize(full_file_path) == 0:
-            file_names = open(self.file_names,'a')
-            file_names.write('Sheet.txt' + ' ')
-            file_names.close()
+            if os.path.getsize(full_file_path) == 0:
+                file_names = open(self.file_names,'a')
+                file_names.write('Sheet.txt' + ' ')
+                file_names.close()
         
-        # Additionally, we create our first .txt file corresponding to the newly created Excel sheet
-        # The first Excel sheet created is always named "Sheet"
-        first_existing_text_file= 'Sheet.txt'
-        my_new_file = open(first_existing_text_file, 'a')
-        my_new_file.close()
-        
+            # Additionally, we create our first .txt file corresponding to the newly created Excel sheet
+            # The first Excel sheet created is always named "Sheet"
+            first_existing_text_file= 'Sheet.txt'
+            my_new_file = open(first_existing_text_file, 'a')
+            my_new_file.close()
 
+            # if method write_method_called has not been called before, 
+            # The method executes and sets the state to True using write_method_called. 
+            # Otherwise, it does nothing
+            FilesHandler.write_method_called(self)
         
-        return file_path
+            return file_path
+        else:
+            return None
     
     def create_excel_sheet(self,new_sheet_name):
         wb = Workbook()
@@ -204,9 +236,7 @@ class FilesHandler():
         # JS functionanaliy preventFalseValues in "trackig-expenses" does not work. 
         # Therefore, to prevent this issue, the variable 'file_name' was initialized as 'file_name = 'expenses.xlsx'
         
-        #file_name = 'expenses.xlsx'
-        #file_name =self.excel_file
-        #print(self.excel_file)
+
         file_path = os.path.join(self.path,self.excel_file)
         
 
@@ -405,10 +435,6 @@ class FilesHandler():
 
         
 
-
-
-
-    
     def delete_files(self,txt_file_from_excel_sheet_selected,excel_sheet_selected):
 
         # Joining Paths with os.path.join
@@ -471,6 +497,5 @@ class FilesHandler():
 
             return temp
         wb.save(file_path)
-        
-        
 
+    
