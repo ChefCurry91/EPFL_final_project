@@ -17,6 +17,7 @@ const span = document.getElementsByClassName("close-modal")[0];
 // When the user clicks on the button, open the modal
 btn.onclick = () => {
    modal.style.display = "block";
+  
  }
 
  // When the user clicks on <span> (x), close the modal
@@ -30,6 +31,21 @@ window.onclick = (event) => {
      modal.style.display = "none";
    }
  } 
+
+const btnSubmitNewExcelSheet = document.getElementById("submit-new-name-sheet");
+
+ const checkNameExcelSheetToCreate = (event) => {
+  
+  const input = document.getElementById('input-sheet-name').value
+
+  if (input.includes(' ')) {
+    event.preventDefault();
+    alert('Please provide a string of characters without spaces.')
+  }
+
+ }
+
+ btnSubmitNewExcelSheet.addEventListener('click',checkNameExcelSheetToCreate)
 
 
  // Local storage
@@ -112,6 +128,5 @@ const getUsernameFromLocalStorage = () => {
   
 getUsernameFromLocalStorage();
   
-  
-  
+
 buttonAddUserName.addEventListener('click', addUserName)
